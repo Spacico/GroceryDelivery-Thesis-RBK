@@ -1,57 +1,75 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { View,StyleSheet,TouchableHighlight,Text} from 'react-native';
+import SendNotification from './components/sendNotification'
+import Login from './components/login';
+// import Signup from './components/signup';
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends React.Component {
+    constructor(props) {
+        super (props);
+  
+        this.state = { 
+            flag: 'main'
+        };
+    }
 
-export default class App extends Component<{}> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+    changeFlag (component) {
+        this.setState({flag: component});
+    }
+
+    render() {
+        if (this.state.flag === 'main')
+        {
+            return (
+                <View style={styles.container}>
+                    <TouchableHighlight 
+                        style = {styles.addButton}
+                        onPress = {() => {
+                            this.changeFlag('login');
+                        }}
+                    >
+                        <Text>LOGIN2</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight 
+                        style = {styles.addButton}
+                        onPress = {() => {
+                            this.changeFlag('signup');
+                        }}
+                    >
+                        <Text>SignUp</Text>
+                    </TouchableHighlight>
+                </View>
+            );
+        }else if (this.state.flag === 'login') {
+            return (
+                <Login changeFlag = {this.changeFlag.bind(this)}/>
+            );
+        }else if (this.state.flag === 'signup') {
+            return (
+                <Signup changeFlag = {this.changeFlag.bind(this)}/>
+            );
+        }else if (this.state.flag === 'sendNotification') {
+            return (
+                <SendNotification changeFlag = {this.changeFlag.bind(this)}/>
+            );
+        }
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    addButton: {
+        backgroundColor : '#ccc',
+        width : 90 ,
+        height : 40,
+        justifyContent : 'center',
+        elevation : 8,
+    },
+  
 });
