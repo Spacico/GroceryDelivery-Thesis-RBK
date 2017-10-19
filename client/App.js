@@ -2,7 +2,7 @@ import React from 'react';
 import { View,StyleSheet,TouchableHighlight,Text} from 'react-native';
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
-// import Signup from './components/signup';
+import Signup from './components/signup';
 
 
 export default class App extends React.Component {
