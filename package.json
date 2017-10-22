@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Spacico/GroceryDelivery-Thesis-RBK/issues"
   },
-  "homepage": "https://github.com/Spacico/GroceryDelivery-Thesis-RBK#readme"
+  "homepage": "https://github.com/Spacico/GroceryDelivery-Thesis-RBK#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.12.3",
+    "socket.io": "^2.0.3"
+  }
 }

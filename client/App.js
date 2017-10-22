@@ -9,8 +9,11 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
+window.navigator.userAgent = 'react-native';
+import io from 'socket.io-client/dist/socket.io';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,18 +23,26 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+  constructor (props) {
+    super (props);
+    
+    this.socket = io('http://192.168.1.7:1128', {jsonp: false});
+    this.state = {
+      texto: 'Hi all!'
+    }
+  }
+  socketManager () {
+    this.setState({'texto':'Hi nobody!'})
+    this.socket.emit ('texto', this.state.texto);
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <Button onPress={() => {
+          this.socketManager ();
+        }} 
+          title={this.state.texto}/>
       </View>
     );
   }
