@@ -3,6 +3,7 @@ import { View,StyleSheet,TouchableHighlight,Text} from 'react-native';
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
 import Signup from './components/signup';
+// import {AppIntro} from 'react-native-app-intro';
 
 
 export default class App extends React.Component {
@@ -19,7 +20,8 @@ export default class App extends React.Component {
     }
 
     render() {
-        if (this.state.flag === 'main')
+
+         if (this.state.flag === 'main')
         {
             return (
                 <View style={styles.container}>
@@ -29,7 +31,7 @@ export default class App extends React.Component {
                             this.changeFlag('login');
                         }}
                     >
-                        <Text>LOGIN2</Text>
+                        <Text>LOGIN</Text>
                     </TouchableHighlight>
                     <TouchableHighlight 
                         style = {styles.addButton}
@@ -37,7 +39,7 @@ export default class App extends React.Component {
                             this.changeFlag('signup');
                         }}
                     >
-                        <Text>SignUp</Text>
+                        <Text>SIGN UP</Text>
                     </TouchableHighlight>
                 </View>
             );
@@ -60,16 +62,21 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#8B0000',
         alignItems: 'center',
         justifyContent: 'center',
     },
     addButton: {
         backgroundColor : '#ccc',
-        width : 90 ,
+        width :410 ,
         height : 40,
         justifyContent : 'center',
         elevation : 8,
     },
+    signup :{
+        width : 300 ,
+        height : 100
+    }
   
 });
+

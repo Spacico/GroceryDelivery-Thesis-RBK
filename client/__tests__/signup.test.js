@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../components/login';
+import Signup from '../components/signup';
 // import TestUtils from 'react-dom/test-utils';;
 import renderer from 'react-test-renderer';
 import expect from 'expect';
@@ -12,7 +12,7 @@ import expect from 'expect';
 describe('App ReactNativeTesting', () => {
 
 it('renders without crashing', () => {
-  const rendered = renderer.create(<Login />).toJSON();
+  const rendered = renderer.create(<Signup />).toJSON();
   expect(rendered).toBeTruthy();
 });
 
