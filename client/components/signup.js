@@ -16,7 +16,7 @@ import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Aler
 
 
   onClickButton(){
-        fetch('http:192.168.2.57:1128/login', {//192.168.1.7
+        fetch('http:192.168.2.99:1128/consumerSignup', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,7 +45,8 @@ import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Aler
             <Text
             style = {styles.title}
             > Grocery Shop</Text>
-            </View>
+            
+                   <Text> </Text>
 
             <TextInput 
                     onChangeText = {(val) => this.setState({userName : val})}
@@ -66,9 +67,9 @@ import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Aler
                     }
                 > 
                     <Text
-                    style = {styles.buttonText}
                     >SIGNUP</Text>
                 </TouchableHighlight>
+                </View>
        </View>
     );
   }
@@ -77,7 +78,7 @@ import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Aler
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F7B50C',
     alignItems: 'center',
     justifyContent: 'center',
   },

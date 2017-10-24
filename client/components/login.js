@@ -9,13 +9,16 @@ export default class login extends React.Component {
 
         this.state = {
             changeFlag: props.changeFlag,
-            userName : '',
-            password : ''
+            consumerName : '',
+            password : '',
+            list:''
         };
     }
 
+    //http:192.168.1.2:1128/consumerLogin //osama
+
     onClickButton(){
-        fetch('http:192.168.2.57:1128/login', {//192.168.1.7
+        fetch('http:192.168.8.124:1128/login', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -43,17 +46,17 @@ export default class login extends React.Component {
             <Text
             style = {styles.title}
             > Grocery Shop</Text>
-            </View>
+            
+                   <Text> </Text>
+    
                 <TextInput 
-                    onChangeText = {(val) => this.setState({userName : val})}
-                    style = {styles.input} placeholder = 'userName'
-                    placeholderTextColor = "rgba(255,255,255,0.7)"
+                    onChangeText = {(val) => this.setState({consumerName : val})}
+                    style = {styles.input} placeholder = 'consumerName'
                 />
 
                 <TextInput 
                     onChangeText = {(val) => this.setState({password : val})}
                     style = {styles.input} placeholder = 'password'
-                    placeholderTextColor = "rgba(255,255,255,0.7)"
                     secureTextEntry
                 />
 
@@ -64,10 +67,9 @@ export default class login extends React.Component {
                     }
                 > 
                     <Text
-                    style = {styles.buttonText}
                     >Log In</Text>
                 </TouchableHighlight>
-
+</View>
             </View>
         );
     }
@@ -112,7 +114,8 @@ const styles = StyleSheet.create({
     buttonText :{
     textAlign:'center',
     color : "#FFFFFF",
-    fontWeight : "700"
+    fontWeight : "700",
+    opacity:.02
 }
 });
 
