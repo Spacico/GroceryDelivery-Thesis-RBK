@@ -4,24 +4,74 @@ import {
     Text,
     AppRegistry,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    ScrollView
+    
 } from 'react-native';
+import List from './list'
 
 export default class Getlists extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            changeFlag: this.props.changeFlag
-        };
+            changeFlag: this.props.changeFlag,
+            lists: ''              
+                };
     }
+    gitlistsfunc() {
+
+       return fetch('http://192.168.2.20:1128/checkAvailableLists')
+      .then((response) => response.json())
+      .then((data) => {
+          this.setState({lists:data})
+
+      })
+      .catch((err) => {
+        throw err;
+      });
+
+}
+run(){
+    if(this.state.lists.length){
+      return (
+        <View >
+            {this.state.lists.map((list,index)=>
+                (<List list={list} />
+
+
+                   //  <View>
+                   //  <Text list={list} key={index}>{list.items}</Text>
+                   //  <Text list={list} key={index}>{list.consumerName}</Text>
+                   //  <Text list={list} key={index}>{list.storeInfo}</Text>
+                  
+                   // </View> 
+                    )
+          )}
+        </View>
+       )
+  
+}}
+   
 
     render() {
         return (
             <View>
                 <View>
-                    <Text> get lists page</Text>
+                   
+                    <TouchableOpacity
+                       
+                        onPress={this.gitlistsfunc.bind(this)}
+                    >
+                        <Text style={styles.buttonText}>GETLIST</Text>
+                    </TouchableOpacity>
                 </View>
+               <ScrollView>
+               {this.run()}
+
+               </ScrollView>
+                
                 <View>
+                   
                     <TouchableOpacity
                         style={{}}
                         onPress={() => {
@@ -52,15 +102,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'gray'
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // backgroundColor: '#F5FCFF'
     },
     content: {
         alignItems: 'center'
-        // fontSize: 20,
-        // textAlign: 'center',
-        // margin: 10
     },
     logo: {
         color: 'white',

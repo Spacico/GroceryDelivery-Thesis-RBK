@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
 
     onClickLogin() {
-        fetch(' http://192.168.1.4:1128/login', {
+        fetch(' http://192.168.2.20:1128/agentLogin', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

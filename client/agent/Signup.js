@@ -6,6 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     AppRegistry
+    
 } from 'react-native';
 
 export default class Signup extends Component {
@@ -16,14 +17,14 @@ export default class Signup extends Component {
             agentName: '',
             password: '',
             address: '',
-            phon: '',
+            phone: '',
             birthDate: '',
             firstName: '',
             lastName: ''
         };
     }
     onClickSignup() {
-        fetch('http:192.168.1.4:1128/login', {
+        fetch('http:192.168.2.20:1128/agentSignup', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -42,7 +43,8 @@ export default class Signup extends Component {
 
     render() {
         return (
-            <View style={styles.content}>
+        
+             <View style={styles.content}> 
                 <View style={styles.inputContainer}>
                     <TextInput
                         onChangeText={val => {
@@ -127,6 +129,7 @@ export default class Signup extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
+           
         );
     }
 }
