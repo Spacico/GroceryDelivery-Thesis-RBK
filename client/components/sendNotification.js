@@ -13,13 +13,16 @@ export default class sendNotification extends React.Component {
             Budget:'',
             storeInfo :'',
             items : '',
-            latitude:"",
-            longitude:""
+            latitude: props.latitude,
+            longitude: props.longitude,
+            changeLocation: props.changeLocation,
+            getLocation: props.getLocation
 
         };
     }
     //http:192.168.1.12:1128/sendNotification 'osama'
     //http:192.168.1.7:8000/send' 'Doaa'
+
 
     onClickButton(){
         fetch('http:192.168.2.99:1128/sendNotification', {//192.168.1.7
@@ -37,16 +40,12 @@ export default class sendNotification extends React.Component {
             }); 
         this.state.changeFlag('main');
     }
-
+// ,error: null
     loc() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         // alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null
-        });
+        this.state.changeLocation({latitude:position.coords.latitude, longitude: position.coords.longitude})
       },
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 200}

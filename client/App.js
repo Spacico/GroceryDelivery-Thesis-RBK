@@ -6,85 +6,53 @@
 
 import React, { Component } from 'react';
 import {
-  Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text
+  Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text
 } from 'react-native';
 
-import MapView from 'react-native-maps';
+
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
 import Signup from './components/signup';
-const {width,height}=Dimensions.get('window');
-const ASPECT_RATION=width/height;
-const LONGTUDEDELTA=0.922*ASPECT_RATION
+import Mapview from './components/mapView';
+
+
 export default class App extends Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>
-//           Welcome to React Native!
-//         </Text>
-//       </View>
-//     );
-//   }
-// }
-
-
 
   constructor(props) {
     super(props);
     //alert(MapView.Marker());
     this.state = {
        flag: 'main',
-      latitude: 31.9863,
-      longitude: 35.8375,
-      error: null
+      error: null,
+      latitude:31.9863,
+      longitude:35.8375
     };
   }
 changeFlag (component) {
         this.setState({flag: component});
     }
+    changeLocation(obj){
+      alert(this.state.latitude)
+        this.setState({
+            latitude:obj.latitude,
+            longitude:obj.longitude
+        })
+    }
 
-  // componentDidMount() {
-  //   navigator.geolocation.getCurrentPosition(
-  //     (position) => {
-  //       alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
-  //       this.setState({
-  //         latitude: position.coords.latitude,
-  //         longitude: position.coords.longitude,
-  //         error: null
-  //       });
-  //     },
-  //     (error) => this.setState({ error: error.message }),
-  //     { enableHighAccuracy: true, timeout: 200}
-  //   );
-  // }
+getLocation () {
+  return {latitude: this.state.latitude, longitude: this.state.longitude}
+}
 
   render() {
    if (this.state.flag === 'mapview'){
     return (
-        <View style ={styles.container}>
-
-          <MapView
-            onPress = {(e) => {
-              this.setState({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude
-              })
-              alert('latitude:' + this.state.latitude + '   longitude' + this.state.longitude)
-            }}
-              style={styles.map}
-              region={{
-            latitude: this.state.latitude,
-            longitude: this.state.longitude,
-            latitudeDelta: 0.000922,
-            longitudeDelta: 0.04999
-          }}
-          >
-          <MapView.Marker coordinate={{latitude:this.state.latitude,longitude:this.state.longitude}}/>
-
-
-          </MapView>
-        </View>
+        <Mapview 
+          changeLocation = {this.changeLocation.bind(this)} 
+          changeFlag = {this.changeFlag.bind(this)} 
+          latitude = {this.state.latitude}
+          longitude = {this.state.longitude}
+          getLocation = {this.getLocation.bind(this)}
+        />
 );
        }else if (this.state.flag === 'main')
         {
@@ -122,13 +90,16 @@ changeFlag (component) {
             );
         }else if (this.state.flag === 'sendNotification') {
             return (
-                <SendNotification changeFlag = {this.changeFlag.bind(this)}/>
+                <SendNotification 
+                  changeLocation = {this.changeLocation.bind(this)} 
+                  changeFlag = {this.changeFlag.bind(this)} 
+                  latitude = {this.state.latitude} 
+                  longitude = {this.state.longitude}/>
             );
         }
   }
 }
 
-// let { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
@@ -139,9 +110,13 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-    width: width,
-    height: height,
+    width: 1000,
+    // height: height,
   },
+  arrow:{
+    width: 40,
+    height: 20,
+  }
 });
 
 
