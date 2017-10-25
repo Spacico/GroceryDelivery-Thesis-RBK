@@ -5,7 +5,12 @@ var listSchema = mongoose.Schema({
 	agentName:  String,
 	consumerName: String,
 	items:String,
-	available: Boolean
+	available: Boolean,
+	location :{
+		latitude:Number,
+		longitude:Number
+	},
+	storeInfo:String
 })
 
 var Lists = mongoose.model('Lists', listSchema);

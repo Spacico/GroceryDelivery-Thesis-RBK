@@ -23,25 +23,29 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
-  constructor (props) {
-    super (props);
-    
-    this.socket = io('http://192.168.1.7:1128', {jsonp: false});
-    this.state = {
-      texto: 'Hi all!'
-    }
+
+  login () {
+    fetch('http://192.168.2.57:1128/checkAvailableLists', {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
   }
-  socketManager () {
-    this.setState({'texto':'Hi nobody!'})
-    this.socket.emit ('texto', this.state.texto);
+})
+.then(res => {
+  let data = res.json();
+})
+.then ( data => {
+  alert(data[0].items);
+})
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Button onPress={() => {
-          this.socketManager ();
-        }} 
+          alert('Hiiiiiii')
+        }}
           title={this.state.texto}/>
       </View>
     );
