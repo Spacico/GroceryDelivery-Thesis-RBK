@@ -6,7 +6,6 @@ import {
     StyleSheet,
     TouchableOpacity,
     AppRegistry
-    
 } from 'react-native';
 
 export default class Signup extends Component {
@@ -43,8 +42,7 @@ export default class Signup extends Component {
 
     render() {
         return (
-        
-             <View style={styles.content}> 
+            <View style={styles.content}>
                 <View style={styles.inputContainer}>
                     <TextInput
                         onChangeText={val => {
@@ -129,7 +127,6 @@ export default class Signup extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-           
         );
     }
 }

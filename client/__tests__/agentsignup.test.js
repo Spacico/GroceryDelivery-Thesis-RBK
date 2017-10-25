@@ -2,31 +2,29 @@ import React from 'react';
 import Signup from '../agent/Signup';
 import renderer from 'react-test-renderer';
 
-describe('App REactNAtive Testing',()=>{
-    it('renders with out crashing',()=>{
-        const rendered = renderer.create(<Signup/>).toJSON();
+describe('App REactNAtive Testing', () => {
+    it('renders with out crashing', () => {
+        const rendered = renderer.create(<Signup />).toJSON();
         expect(rendered).toBeTruthy();
     });
-    it('contains TextInput',()=>{
+    it('contains TextInput', () => {
         const TextInput = require('TextInput');
         const Tree = renderer.create(<TextInput />).toJSON();
         expect(Tree).toMatchSnapshot();
     });
-    it('contains TouchableOpacity',()=>{
+    it('contains TouchableOpacity', () => {
         const TouchableOpacity = require('TouchableOpacity');
         const Tree = renderer.create(<TouchableOpacity />).toJSON();
         expect(Tree).toMatchSnapshot();
     });
-    it('contains View',()=>{
+    it('contains View', () => {
         const View = require('View');
         const Tree = renderer.create(<View />).toJSON();
         expect(Tree).toMatchSnapshot();
     });
-    it('contains ScrollView',()=>{
+    it('contains ScrollView', () => {
         const ScrollView = require('ScrollView');
         const Tree = renderer.create(<ScrollView />).toJSON();
         expect(Tree).toMatchSnapshot();
     });
-
-   
 });

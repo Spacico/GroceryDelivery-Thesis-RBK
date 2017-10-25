@@ -6,72 +6,60 @@ import {
     TouchableOpacity,
     StyleSheet,
     ScrollView
-    
 } from 'react-native';
-import List from './list'
-
+//import List component from it's file
+import List from './list';
+//export class Getlistis
 export default class Getlists extends Component {
     constructor(props) {
         super(props);
         this.state = {
             changeFlag: this.props.changeFlag,
-            lists: ''              
-                };
+            lists: ''
+        };
     }
+    //fetch active lists from database
     gitlistsfunc() {
+        return fetch('http://192.168.2.20:1128/checkAvailableLists')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ lists: data });
+            })
+            .catch(err => {
+                throw err;
+            });
+    }
+    //function for sepersting the objects into components 'List componenet'
+    run() {
+        if (this.state.lists.length) {
+            return (
+                <View>
+                    {this.state.lists.map((list, index) => (
+                        <List list={list} />
 
-       return fetch('http://192.168.2.20:1128/checkAvailableLists')
-      .then((response) => response.json())
-      .then((data) => {
-          this.setState({lists:data})
+                        //  <View>
+                        //  <Text list={list} key={index}>{list.items}</Text>
+                        //  <Text list={list} key={index}>{list.consumerName}</Text>
+                        //  <Text list={list} key={index}>{list.storeInfo}</Text>
 
-      })
-      .catch((err) => {
-        throw err;
-      });
-
-}
-run(){
-    if(this.state.lists.length){
-      return (
-        <View >
-            {this.state.lists.map((list,index)=>
-                (<List list={list} />
-
-
-                   //  <View>
-                   //  <Text list={list} key={index}>{list.items}</Text>
-                   //  <Text list={list} key={index}>{list.consumerName}</Text>
-                   //  <Text list={list} key={index}>{list.storeInfo}</Text>
-                  
-                   // </View> 
-                    )
-          )}
-        </View>
-       )
-  
-}}
-   
+                        // </View>
+                    ))}
+                </View>
+            );
+        }
+    }
 
     render() {
         return (
             <View>
                 <View>
-                   
-                    <TouchableOpacity
-                       
-                        onPress={this.gitlistsfunc.bind(this)}
-                    >
+                    <TouchableOpacity onPress={this.gitlistsfunc.bind(this)}>
                         <Text style={styles.buttonText}>GETLIST</Text>
                     </TouchableOpacity>
                 </View>
-               <ScrollView>
-               {this.run()}
+                <ScrollView>{this.run()}</ScrollView>
 
-               </ScrollView>
-                
                 <View>
-                   
                     <TouchableOpacity
                         style={{}}
                         onPress={() => {

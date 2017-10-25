@@ -2,11 +2,11 @@
 var mongoose = require('mongoose');
 
 var listSchema = mongoose.Schema({
-	agentName:  String,
-	consumerName: String,
-	items:String,
-	available: Boolean
-})
+    agentName: String,
+    consumerName: String,
+    items: String,
+    available: Boolean
+});
 
 var Lists = mongoose.model('Lists', listSchema);
 

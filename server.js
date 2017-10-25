@@ -55,10 +55,9 @@ app.get('/getNotification', (req, res) => {
 });
 
 app.get('/checkAvailableLists', (req, res) => {
-  
     Lists.find({ available: true }, (err, lists) => {
         if (err) console.log(err);
-console.log("ggggggghhhhhhhhgggggg")
+        console.log('ggggggghhhhhhhhgggggg');
         res.send(lists);
     });
 });
