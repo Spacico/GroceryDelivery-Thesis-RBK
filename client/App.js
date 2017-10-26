@@ -6,10 +6,11 @@
 
 import React, { Component } from 'react';
 import {
-  Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text
+ Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text
 } from 'react-native';
 
-
+import { SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
+import {Header,Container, Button } from 'native-base';
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
 import Signup from './components/signup';
@@ -25,7 +26,8 @@ export default class App extends Component {
        flag: 'main',
       error: null,
       latitude:31.9863,
-      longitude:35.8375
+      longitude:35.8375,
+      selectedTab: 'profile'
     };
   }
 changeFlag (component) {
@@ -43,7 +45,13 @@ getLocation () {
   return {latitude: this.state.latitude, longitude: this.state.longitude}
 }
 
+changeTab (selectedTab) {
+  this.setState({selectedTab})
+}
+
   render() {
+
+    const { selectedTab } = this.state
    if (this.state.flag === 'mapview'){
     return (
         <Mapview 
@@ -58,6 +66,10 @@ getLocation () {
         {
             return (
                 <View style={styles.container}>
+<SearchBar
+  noIcon
+  // onChangeText={someMethod}
+  placeholder='Type Here...' />
 
                     <TouchableHighlight 
                         style = {styles.addButton}

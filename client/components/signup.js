@@ -1,7 +1,8 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Alert,AppRegistry,TouchableOpacity } from 'react-native';
+import {StatusBar,Image, StyleSheet, Text, View,TextInput,TouchableHighlight, Alert,AppRegistry,TouchableOpacity } from 'react-native';
 // import sendNotification from "./components/sendNotification"
-
+import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
+import {Header,Container, Button } from 'native-base';
 
  export default class signup extends React.Component {
   constructor(props) {
@@ -37,16 +38,18 @@ import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Aler
   render() {
     return (
       <View  KeyboardAvoidingView behavior="padding" style={styles.container}>
-             <View style = {styles.logoContainer}>
-            <Image 
-            style = {styles.logo}
-            source = {require('../images/Grocery.png')}
+             
+
+
+            <Image style={styles.container}
+            source = {require('../images/login3.jpg')}
+            >
+
+            <StatusBar
+            backgroundColor ="#DF5900"
             />
-            <Text
-            style = {styles.title}
-            > Grocery Shop</Text>
-            
-                   <Text> </Text>
+
+           
 
             <TextInput 
                     onChangeText = {(val) => this.setState({userName : val})}
@@ -69,7 +72,7 @@ import {Image, StyleSheet, Text, View,TextInput, Button,TouchableHighlight, Aler
                     <Text
                     >SIGNUP</Text>
                 </TouchableHighlight>
-                </View>
+            </Image>
        </View>
     );
   }

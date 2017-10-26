@@ -24,3 +24,13 @@
       //      } )
       //      }  
       //           </View>
+
+
+
+// to install react base
+      // npm install native-base --save
+      // react-native link
+
+// to install react-native-elements
+      // npm install react-native-elements --save
+            // react-native link
