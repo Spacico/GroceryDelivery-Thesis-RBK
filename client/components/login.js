@@ -59,16 +59,8 @@ export default class login extends React.Component {
     
 
  
- <TouchableHighlight 
-  onPress={() => { this.state.changeFlag('main')}}
-       
- >
-            <Image style={styles.arrow}
-            source = {require('../images/arrow.png')}
-             onPress={() => { this.state.changeFlag('main')}}
-            />
-</TouchableHighlight>
-            <Text style= {styles.label} > User Name </Text>
+
+            <Text  style= {{ marginTop: 180,  textAlign:'right',fontWeight: 'bold',fontSize: 20 }}  > User Name </Text>
                 <SearchBar 
                     lightTheme
                     onChangeText = {(val) =>{ this.setState({consumerName : val})}}
@@ -87,25 +79,38 @@ export default class login extends React.Component {
                 />
 
 <Text>{'\n'}</Text>
-
+ <Text>{'\n'}</Text>
                <TouchableHighlight
                style = {styles.login }
                 icon={{name: 'cached'}}
                     onPress={
                         this.onClickButton.bind(this)
                     }>
-                    <Text style= {styles.text} > LOGIN </Text>
+                    <Text style= {styles.text} > Log in </Text>
                 </TouchableHighlight> 
                 <Text>{'\n'}</Text>
+  <Text>{'\n'}</Text>
+                <Tabs style={styles.tabs} >
 
- <TouchableHighlight
-               style = {styles.signup }
-                
-                    onPress={() =>
-                       {this.state.changeFlag('signup');}
-                    }>
-                    <Text style= {styles.text} > SIGNUP </Text>
-                </TouchableHighlight> 
+  <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10 }}
+    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#DF5900'} name='home' size={40} />}
+    renderSelectedIcon={() => <Icon  color={'#DF5900'} name='home' size={50} />}
+   onPress={()=>{this.state.changeFlag('main')}}
+   >
+  </Tab>
+  <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10}}
+    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
+    // selected={selectedTab === 'profile'}
+    // title={selectedTab === 'profile' ? 'PROFILE' : null}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#DF5900'} name='person' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#DF5900'} name='person' size={50} />}
+    onPress={()=>{this.state.changeFlag('signup')}}
+    >
+  </Tab>
+ 
+</Tabs>
 
           </Image>
                
@@ -201,13 +206,15 @@ arrow:{
     width: 100,
     height :100,
 
-}
-// tab:{
-//     backgroundColor:"#DF5900",
+},
+tabs:{
+    flex: 1,
+     width: 500,
+        height : 30,
+     
 
-//     width:600,
-//     flex: 1
-// }
+}
+
 });
 
 

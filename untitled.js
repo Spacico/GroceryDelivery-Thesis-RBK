@@ -26,6 +26,23 @@
       //           </View>
 
 
+// <Icon.Button name="facebook" backgroundColor="#3b5998">
+//     <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
+//   </Icon.Button>
+
+
+ // <TouchableHighlight 
+  // onPress={() => { this.state.changeFlag('main')}}
+       
+ // >
+            // <Image style={styles.arrow}
+            // source = {require('../images/arrow.png')}
+            //  onPress={() => { this.state.changeFlag('main')}}
+            // />
+// </TouchableHighlight>
+
+
+
 
 // to install react base
       // npm install native-base --save

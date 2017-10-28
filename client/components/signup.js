@@ -1,7 +1,8 @@
 import React from 'react';
 import {StatusBar,Image, StyleSheet, Text, View,TextInput,TouchableHighlight, Alert,AppRegistry,TouchableOpacity } from 'react-native';
 // import sendNotification from "./components/sendNotification"
-import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
+// import OffCanvas3D from '../offcanvas3d'
+import {Icon,TabBar,SearchBar,Tabs, Tab,SideMenu, List, ListItem } from 'react-native-elements'
 import {Header,Container, Button } from 'native-base';
 
  export default class signup extends React.Component {
@@ -11,11 +12,18 @@ import {Header,Container, Button } from 'native-base';
     this.state = {
       changeFlag: props.changeFlag,
       userName : '',
-      password : ''
+      email:"",
+      password : '',
     }
+     // this.toggleSideMenu = this.toggleSideMenu.bind(this)
   }
 
-
+// handleMenu() {
+//   const {menuOpen} = this.state
+//   this.setState({
+//     menuOpen: !menuOpen
+//   })
+// }
   onClickButton(){
         fetch('http:192.168.2.99:1128/consumerSignup', {//192.168.1.7
             method: 'POST',
@@ -30,9 +38,15 @@ import {Header,Container, Button } from 'native-base';
             .catch(()=>{
                 
             }); 
-
-        this.state.changeFlag('main');
+        alert("Thank you for register  " + "<3\n" + "Please Login to your account" )
+        // this.state.changeFlag('main');
     }
+
+// onSideMenuChange (isOpen: boolean) {
+//   this.setState({
+//     isOpen: isOpen
+//   })
+// }
 
 
   render() {
@@ -49,29 +63,86 @@ import {Header,Container, Button } from 'native-base';
             backgroundColor ="#DF5900"
             />
 
+
+
+
+
            
-
-            <TextInput 
+ <Text style= {{ marginTop: 80,  textAlign:'right',fontWeight: 'bold',fontSize: 20 }} > User Name </Text>
+ <SearchBar 
+                    lightTheme
                     onChangeText = {(val) => this.setState({userName : val})}
-                    style = {styles.input} placeholder = 'userName'
-                    placeholderTextColor = "rgba(255,255,255,0.7)"
+                    style = {styles.input} placeholder = 'user name .... '
+                    noIcon 
+                    required
                 />
 
-                <TextInput 
-                    onChangeText = {(val) => this.setState({password : val})}
-                    style = {styles.input} placeholder = 'password'
+                  <Text>{'\n'}</Text>
+
+<Text style= {styles.label} > Email </Text>
+                 <SearchBar 
+                lightTheme
+                    onChangeText = {(val) => this.setState({email : val})}
+                    style = {styles.input} placeholder = 'Email.....'
+                    noIcon
                     secureTextEntry
-                    placeholderTextColor = "rgba(255,255,255,0.7)"
+                    required
                 />
+                <Text>{'\n'}</Text>
 
-                <TouchableHighlight
-                    onPress={
+<Text style= {styles.label} > Password </Text>
+               
+                <SearchBar 
+                lightTheme
+                    onChangeText = {(val) => this.setState({password : val})}
+                    style = {styles.input} placeholder = 'password.....'
+                    noIcon
+                    required
+                    secureTextEntry
+                />
+                <Text>{'\n'}</Text>
+                <Text>{'\n'}</Text>
+ 
+ <Text>{'\n'}</Text>
+
+
+
+
+<TouchableHighlight
+               style = {styles.signup }
+                icon={{name: 'cached'}}
+                   onPress={
                         this.onClickButton.bind(this)
-                    }
-                > 
-                    <Text
-                    >SIGNUP</Text>
-                </TouchableHighlight>
+                    }>
+                    <Text style= {styles.text} > Sign Up </Text>
+                </TouchableHighlight> 
+
+
+
+
+<Tabs style={styles.tabs} >
+
+  <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10 }}
+    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#8C0000'} name='home' size={40} />}
+    renderSelectedIcon={() => <Icon  color={'#8C0000'} name='home' size={50} />}
+   onPress={()=>{this.state.changeFlag('main')}}
+   >
+  </Tab>
+  <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10}}
+    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
+    // selected={selectedTab === 'profile'}
+    // title={selectedTab === 'profile' ? 'PROFILE' : null}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#8C0000'} name='person' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#8C0000'} name='person' size={50} />}
+    onPress={()=>{this.state.changeFlag('login')}}
+    >
+  </Tab>
+ 
+</Tabs>
+
+
             </Image>
        </View>
     );
@@ -92,12 +163,12 @@ const styles = StyleSheet.create({
     justifyContent : "center",
     elevation : 8,
   },
-  input: {
-        width : 200 ,
+   input: {
+        width: 300,
         height : 40,
-        marginBottom : 20,
-        color : "#FFF",
-        paddingHorizontal : 10
+        // marginBottom : 20,
+        // color : "#FFF",
+        // paddingHorizontal : 10
     },
     logoContainer :{
         alignItems : 'center',
@@ -118,6 +189,46 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color : "#FFFFFF",
     fontWeight : "700"
+},
+login:{
+     width: 300,
+        height : 40,
+        backgroundColor:"#8C0000",
+       //  // color:"#FFFFFF",
+       alignItems : "center",
+       justifyContent: 'center',
+       // fontWeight : "700"
+},
+signup:{
+     width: 300,
+        height : 40,
+        backgroundColor:"#DF5900",
+       //  // color:"#FFFFFF",
+       alignItems : "center",
+       justifyContent: 'center',
+       // fontWeight : "700"
+},
+text :{
+    textAlign: 'left',
+    // color : "#CF0063",
+    fontWeight: 'bold',
+    fontSize: 20,  
+    // opacity:.02
+},
+label :{
+    textAlign:'right',
+    // color : "#CF0063",
+    fontWeight: 'bold',
+    fontSize: 20,  
+    // opacity:.02
+},
+tabs:{
+    flex: 1,
+     width: 500,
+        height : 30,
+     
+
 }
+
   
 });

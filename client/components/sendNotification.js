@@ -1,5 +1,8 @@
 import React from 'react';
-import {View,StyleSheet,TouchableHighlight,Text,TextInput} from 'react-native';
+import {StatusBar,Image, StyleSheet, Text, View,TextInput,TouchableHighlight, Alert,AppRegistry,TouchableOpacity } from 'react-native';
+// import sendNotification from "./components/sendNotification"
+import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
+import {Header,Container, Button } from 'native-base';
 // import Login from './components/login'
 import MapView from 'react-native-maps';
 
@@ -40,68 +43,123 @@ export default class sendNotification extends React.Component {
             }); 
         this.state.changeFlag('main');
     }
-// ,error: null
-    loc() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        // alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
-        this.state.changeLocation({latitude:position.coords.latitude, longitude: position.coords.longitude})
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 200}
-    );
-  }
+
+  //   loc() {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       // alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+  //       this.state.changeLocation({latitude:position.coords.latitude, longitude: position.coords.longitude})
+  //     },
+  //     (error) => this.setState({ error: error.message }),
+  //     { enableHighAccuracy: true, timeout: 200}
+  //   );
+  // }
 
     render() {
         return (
             <View  KeyboardAvoidingView behavior='padding' style={styles.container}>
-            <Text>{this.state.latitude}</Text>
-                <TextInput 
+
+<Image style={styles.container}
+            source = {require('../images/login3.jpg')}
+            >
+
+            <StatusBar
+            backgroundColor ="#66023c"
+            />
+
+
+ <Text  style= {{ marginTop: 100,  textAlign:'right',fontWeight: 'bold',fontSize: 20 }}  > </Text>
+ <SearchBar 
+                lightTheme
                     onChangeText = {(val) => this.setState({consumerName : val})}
-                    style = {styles.input} placeholder = 'consumerName'
+                    style = {styles.input} placeholder = 'Name.....'
+                    noIcon 
                 />
+                <Text>{'\n'}</Text>
 
-                <TextInput 
+
+<SearchBar 
+                lightTheme
                     onChangeText = {(val) => this.setState({Budget : val})}
-                    style = {styles.input} placeholder = 'Budget' SecureTextEntry
+                    style = {styles.input} placeholder = 'Budget.....'
+                    noIcon
+                    secureTextEntry
                 />
+                <Text>{'\n'}</Text>
 
-                <TextInput 
+<SearchBar 
+                lightTheme
                     onChangeText = {(val) => this.setState({storeInfo : val})}
-                    style = {styles.input} placeholder = 'storeInfo'
+                    style = {styles.input} placeholder = 'Store Info.....'
+                    noIcon 
                 />
+                <Text>{'\n'}</Text>
 
-                <TextInput 
+
+<SearchBar 
+                lightTheme
                     onChangeText = {(val) => this.setState({items : val})}
-                    style = {styles.input} placeholder = 'items'
+                    style = {styles.input} placeholder = 'Items.....'
+                    noIcon 
                 />
+                <Text>{'\n'}</Text>
+               
 
-                <TouchableHighlight 
-                    style = {styles.addButton}
-                    onPress = {this.loc.bind(this)}
-                >
-                    <Text>Current Location</Text>
-                </TouchableHighlight>
-
-                <TouchableHighlight 
-                    style = {styles.addButton}
-                    onPress = {()=>{
+                           <Icon
+  reverse
+  name='md-locate'
+  type='ionicon'
+  color='#517fa4'
+  onPress = {()=>{
                         this.state.changeFlag('mapview');
-                    }
-                    }
-                >
-                    <Text>Location</Text>
-                </TouchableHighlight>
+                    }}
+  style = {styles.location }
+/>
 
-                <TouchableHighlight 
-                    style = {styles.addButton}
-                    onPress = {
+
+
+
+
+
+                <Text>{'\n'}</Text>
+
+
+<TouchableHighlight
+               style = {styles.sendlist }
+                icon={{name: 'cached'}}
+                   onPress = {
                         this.onClickButton.bind(this)
-                    }
-                >
-                    <Text>Send List</Text>
-                </TouchableHighlight>
+                    }>
+                    <Text style= {styles.text} > Send List </Text>
+                </TouchableHighlight> 
 
+
+                <Text>{'\n'}</Text>
+
+   <Tabs style={styles.tabs} >
+
+  <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10 }}
+    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#CD7584'} name='home' size={40} />}
+    renderSelectedIcon={() => <Icon  color={'#CD7584'} name='home' size={50} />}
+   onPress={()=>{this.state.changeFlag('main')}}
+   >
+  </Tab>
+  <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10}}
+    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
+    // selected={selectedTab === 'profile'}
+    // title={selectedTab === 'profile' ? 'PROFILE' : null}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#CD7584'} name='person' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#CD7584'} name='person' size={50} />}
+    onPress={()=>{this.state.changeFlag('signup')}}
+    >
+  </Tab>
+ 
+</Tabs>
+
+
+</Image>
             </View>
         );
     }
@@ -122,7 +180,56 @@ const styles = StyleSheet.create({
         elevation : 8,
     },
     input: {
-        width : 200 ,
+        width : 300 ,
         height : 40,
-    }
+    },
+    signup:{
+     width: 300,
+        height : 40,
+        backgroundColor:"#DF5900",
+       //  // color:"#FFFFFF",
+       alignItems : "center",
+       justifyContent: 'center',
+       // fontWeight : "700"
+},
+text :{
+    textAlign: 'left',
+    // color : "#CF0063",
+    fontWeight: 'bold',
+    fontSize: 20,  
+    // opacity:.02
+},
+label :{
+    textAlign:'right',
+    // color : "#CF0063",
+    fontWeight: 'bold',
+    fontSize: 20,  
+    // opacity:.02
+},
+sendlist:{
+    width: 300,
+        height : 40,
+        backgroundColor:"#66023c",
+       //  // color:"#FFFFFF",
+       alignItems : "center",
+       justifyContent: 'center',
+       // fontWeight : "700"
+},
+location:{
+backgroundColor:"#CD7584",
+width: 50,
+        height : 50,
+       //  // color:"#FFFFFF",
+       alignItems : "center",
+       justifyContent: 'center',
+},
+tabs:{
+    flex: 1,
+     width: 500,
+        height : 30,
+     
+
+}
+
+
 });

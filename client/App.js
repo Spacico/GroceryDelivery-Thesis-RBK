@@ -3,12 +3,9 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+// import Sidebar from 'react-sidebar';
 import React, { Component } from 'react';
-import {
- Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text
-} from 'react-native';
-
+import {Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text} from 'react-native';
 import { SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
 import {Header,Container, Button } from 'native-base';
 import SendNotification from './components/sendNotification'
@@ -41,15 +38,33 @@ changeFlag (component) {
         })
     }
 
+
 getLocation () {
   return {latitude: this.state.latitude, longitude: this.state.longitude}
 }
+
+componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        //alert(position.coords.latitude)
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 200}
+    );
+  }
 
 changeTab (selectedTab) {
   this.setState({selectedTab})
 }
 
   render() {
+
+     var sidebarContent = <b>Sidebar content</b>;
 
     const { selectedTab } = this.state
    if (this.state.flag === 'mapview'){
@@ -66,10 +81,6 @@ changeTab (selectedTab) {
         {
             return (
                 <View style={styles.container}>
-<SearchBar
-  noIcon
-  // onChangeText={someMethod}
-  placeholder='Type Here...' />
 
                     <TouchableHighlight 
                         style = {styles.addButton}
