@@ -37,13 +37,26 @@ export default class sendNotification extends React.Component {
             body: JSON.stringify(
                 this.state
             )
-        }).then (() => {})
-            .catch(()=>{
-              
-            }); 
-        this.state.changeFlag('main');
-    }
+        })
+       .then((response) => {
+           return response.json()
 
+       })
+       .then((responseJson) => {
+         
+           // return responseJson;
+           if(responseJson){
+           alert('your list sucessfuly sent !! \n' + "wait for response .....")
+}
+else {
+    alert("Please try again !!!")
+}
+       })
+       .catch((error) => {
+            // reject(error);
+            alert("Error !!!  Please try again")
+       });
+     }
   //   loc() {
   //   navigator.geolocation.getCurrentPosition(
   //     (position) => {
@@ -136,12 +149,12 @@ export default class sendNotification extends React.Component {
 
                 <Text>{'\n'}</Text>
 
-   <Tabs style={styles.tabs} >
+                   <Tabs style={styles.tabs} >
 
   <Tab
     titleStyle={{fontWeight: 'bold', fontSize: 10 }}
-    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#CD7584'} name='home' size={40} />}
-    renderSelectedIcon={() => <Icon  color={'#CD7584'} name='home' size={50} />}
+    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='home' size={40} />}
+    renderSelectedIcon={() => <Icon  color={'#000000'} name='home' size={50} />}
    onPress={()=>{this.state.changeFlag('main')}}
    >
   </Tab>
@@ -150,8 +163,18 @@ export default class sendNotification extends React.Component {
     // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
     // selected={selectedTab === 'profile'}
     // title={selectedTab === 'profile' ? 'PROFILE' : null}
-    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#CD7584'} name='person' size={40} />}
-    renderSelectedIcon={() => <Icon color={'#CD7584'} name='person' size={50} />}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='person' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#000000'} name='person' size={50} />}
+    onPress={()=>{this.state.changeFlag('login')}}
+    >
+  </Tab>
+    <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10}}
+    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
+    // selected={selectedTab === 'profile'}
+    // title={selectedTab === 'profile' ? 'PROFILE' : null}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='vpn-key' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#000000'} name='vpn-key' size={50} />}
     onPress={()=>{this.state.changeFlag('signup')}}
     >
   </Tab>

@@ -4,10 +4,13 @@
  * @flow
  */
 // import Sidebar from 'react-sidebar';
-import React, { Component } from 'react';
-import {Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text} from 'react-native';
-import { SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
+import {StatusBar,Image, StyleSheet, Text, View,TextInput,TouchableHighlight, Alert,AppRegistry,TouchableOpacity } from 'react-native';
+// import sendNotification from "./components/sendNotification"
+// import OffCanvas3D from '../offcanvas3d'
+import {Icon,TabBar,SearchBar,Tabs, Tab,SideMenu, List, ListItem } from 'react-native-elements'
 import {Header,Container, Button } from 'native-base';
+
+import React, { Component } from 'react';
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
 import Signup from './components/signup';
@@ -82,6 +85,20 @@ changeTab (selectedTab) {
             return (
                 <View style={styles.container}>
 
+  <Image style={styles.containerImg}
+            source = {require('./images/login3.jpg')}
+            >
+
+<View style={styles.profile}>
+            <Image style={styles.img}
+            source = {require('./images/profile.png')}
+            />
+</View>
+
+            <StatusBar
+            backgroundColor ="#000000"
+            />
+
                     <TouchableHighlight 
                         style = {styles.addButton}
                         onPress = {() => {
@@ -101,6 +118,7 @@ changeTab (selectedTab) {
                     >
                         <Text>SIGN UP</Text>
                     </TouchableHighlight>
+                    </Image>
                 </View>
             );
         }else if (this.state.flag === 'login') {
@@ -126,7 +144,7 @@ changeTab (selectedTab) {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    height: 600,
+    height: 1000,
     width: 400,
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -139,6 +157,24 @@ const styles = StyleSheet.create({
   arrow:{
     width: 40,
     height: 20,
+  },
+  containerImg:{
+     flex: 1,
+    backgroundColor: '#F7B50C',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profile :{
+  // marginTop:0,
+   
+    alignItems: 'center',
+    justifyContent: 'center',
+    // position: 'absolute',
+     // bottom: 0
+  },
+  img:{
+  width: 200,
+    height: 200,
   }
 });
 

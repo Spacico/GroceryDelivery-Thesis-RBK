@@ -13,7 +13,7 @@ import {Header,Container, Button } from 'native-base';
       changeFlag: props.changeFlag,
       userName : '',
       email:"",
-      password : '',
+      password : ''
     }
      // this.toggleSideMenu = this.toggleSideMenu.bind(this)
   }
@@ -25,7 +25,7 @@ import {Header,Container, Button } from 'native-base';
 //   })
 // }
   onClickButton(){
-        fetch('http:192.168.2.99:1128/consumerSignup', {//192.168.1.7
+        fetch('http:192.168.2.20:1128/consumerSignup', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -34,11 +34,27 @@ import {Header,Container, Button } from 'native-base';
             body: JSON.stringify(
                 this.state    
             )
-        }).then (() => {})
-            .catch(()=>{
-                
-            }); 
-        alert("Thank you for register  " + "<3\n" + "Please Login to your account" )
+        })
+       .then((response) => {
+           return response.json()
+           alert(response.json())
+
+       })
+       .then((responseJson) => {
+         
+           alert(responseJson);
+           if(responseJson){
+           alert('sucessfuly register !! \n' + "thank you for registering\n  login please")
+}
+else {
+    alert("user name is invalid  :( \n Please try again !!!")
+}
+       })
+       .catch((error) => {
+            alert(error);
+            alert("Error !!!  Please try again")
+       });
+
         // this.state.changeFlag('main');
     }
 
@@ -85,7 +101,6 @@ import {Header,Container, Button } from 'native-base';
                     onChangeText = {(val) => this.setState({email : val})}
                     style = {styles.input} placeholder = 'Email.....'
                     noIcon
-                    secureTextEntry
                     required
                 />
                 <Text>{'\n'}</Text>
@@ -120,12 +135,12 @@ import {Header,Container, Button } from 'native-base';
 
 
 
-<Tabs style={styles.tabs} >
+                <Tabs style={styles.tabs} >
 
   <Tab
     titleStyle={{fontWeight: 'bold', fontSize: 10 }}
-    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#8C0000'} name='home' size={40} />}
-    renderSelectedIcon={() => <Icon  color={'#8C0000'} name='home' size={50} />}
+    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='home' size={40} />}
+    renderSelectedIcon={() => <Icon  color={'#000000'} name='home' size={50} />}
    onPress={()=>{this.state.changeFlag('main')}}
    >
   </Tab>
@@ -134,15 +149,23 @@ import {Header,Container, Button } from 'native-base';
     // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
     // selected={selectedTab === 'profile'}
     // title={selectedTab === 'profile' ? 'PROFILE' : null}
-    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#8C0000'} name='person' size={40} />}
-    renderSelectedIcon={() => <Icon color={'#8C0000'} name='person' size={50} />}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='person' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#000000'} name='person' size={50} />}
     onPress={()=>{this.state.changeFlag('login')}}
+    >
+  </Tab>
+    <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10}}
+    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
+    // selected={selectedTab === 'profile'}
+    // title={selectedTab === 'profile' ? 'PROFILE' : null}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='vpn-key' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#000000'} name='vpn-key' size={50} />}
+    onPress={()=>{this.state.changeFlag('signup')}}
     >
   </Tab>
  
 </Tabs>
-
-
             </Image>
        </View>
     );

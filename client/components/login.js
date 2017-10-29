@@ -25,7 +25,7 @@ export default class login extends React.Component {
   
 
     onClickButton(){
-        fetch('http:192.168.8.124:1128/login', {//192.168.1.7
+        fetch('http:192.168.2.20:1128/consumerLogin', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -34,12 +34,38 @@ export default class login extends React.Component {
             body: JSON.stringify(
                 this.state    
             )
-        }).then (() => {})
-            .catch(()=>{
-                
-            }); 
+        })
+        .then((response) => {
+           return response.json()
 
-        this.state.changeFlag('sendNotification');
+       })
+       .then((responseJson) => {
+         
+           // return responseJson;
+           if(responseJson){
+           this.state.changeFlag('sendNotification');
+}
+else {
+    alert("user name or password is wrong !!!")
+}
+       })
+       .catch((error) => {
+            // reject(error);
+            alert("there is something wrong please try again!!!")
+       });
+
+
+        // .then ((res) => {
+        //     alert(res)
+        //         this.state.changeFlag('sendNotification');
+        // })
+        // .catch((err)=>{
+        //       alert("Hi")
+        //         alert("Please Sign Up First");
+        //         this.state.changeFlag('signup');
+        //     }); 
+
+        
     }
 
     render() {
@@ -94,8 +120,8 @@ export default class login extends React.Component {
 
   <Tab
     titleStyle={{fontWeight: 'bold', fontSize: 10 }}
-    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#DF5900'} name='home' size={40} />}
-    renderSelectedIcon={() => <Icon  color={'#DF5900'} name='home' size={50} />}
+    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='home' size={40} />}
+    renderSelectedIcon={() => <Icon  color={'#000000'} name='home' size={50} />}
    onPress={()=>{this.state.changeFlag('main')}}
    >
   </Tab>
@@ -104,8 +130,18 @@ export default class login extends React.Component {
     // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
     // selected={selectedTab === 'profile'}
     // title={selectedTab === 'profile' ? 'PROFILE' : null}
-    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#DF5900'} name='person' size={40} />}
-    renderSelectedIcon={() => <Icon color={'#DF5900'} name='person' size={50} />}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='person' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#000000'} name='person' size={50} />}
+    onPress={()=>{this.state.changeFlag('login')}}
+    >
+  </Tab>
+    <Tab
+    titleStyle={{fontWeight: 'bold', fontSize: 10}}
+    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
+    // selected={selectedTab === 'profile'}
+    // title={selectedTab === 'profile' ? 'PROFILE' : null}
+    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='vpn-key' size={40} />}
+    renderSelectedIcon={() => <Icon color={'#000000'} name='vpn-key' size={50} />}
     onPress={()=>{this.state.changeFlag('signup')}}
     >
   </Tab>
@@ -210,7 +246,7 @@ arrow:{
 tabs:{
     flex: 1,
      width: 500,
-        height : 30,
+        height : 50,
      
 
 }
