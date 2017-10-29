@@ -3,13 +3,14 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+// import Sidebar from 'react-sidebar';
+import {StatusBar,Image, StyleSheet, Text, View,TextInput,TouchableHighlight, Alert,AppRegistry,TouchableOpacity } from 'react-native';
+// import sendNotification from "./components/sendNotification"
+// import OffCanvas3D from '../offcanvas3d'
+import {Icon,TabBar,SearchBar,Tabs, Tab,SideMenu, List, ListItem } from 'react-native-elements'
+import {Header,Container, Button } from 'native-base';
 
 import React, { Component } from 'react';
-import {
-  Image,Dimensions,Platform,View,StyleSheet,TouchableHighlight,Text
-} from 'react-native';
-
-
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
 import Signup from './components/signup';
@@ -25,7 +26,8 @@ export default class App extends Component {
        flag: 'main',
       error: null,
       latitude:31.9863,
-      longitude:35.8375
+      longitude:35.8375,
+      selectedTab: 'profile'
     };
   }
 changeFlag (component) {
@@ -39,11 +41,35 @@ changeFlag (component) {
         })
     }
 
+
 getLocation () {
   return {latitude: this.state.latitude, longitude: this.state.longitude}
 }
 
+componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        //alert(position.coords.latitude)
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 200}
+    );
+  }
+
+changeTab (selectedTab) {
+  this.setState({selectedTab})
+}
+
   render() {
+
+     var sidebarContent = <b>Sidebar content</b>;
+
+    const { selectedTab } = this.state
    if (this.state.flag === 'mapview'){
     return (
         <Mapview 
@@ -58,6 +84,20 @@ getLocation () {
         {
             return (
                 <View style={styles.container}>
+
+  <Image style={styles.containerImg}
+            source = {require('./images/login3.jpg')}
+            >
+
+<View style={styles.profile}>
+            <Image style={styles.img}
+            source = {require('./images/profile.png')}
+            />
+</View>
+
+            <StatusBar
+            backgroundColor ="#000000"
+            />
 
                     <TouchableHighlight 
                         style = {styles.addButton}
@@ -78,6 +118,7 @@ getLocation () {
                     >
                         <Text>SIGN UP</Text>
                     </TouchableHighlight>
+                    </Image>
                 </View>
             );
         }else if (this.state.flag === 'login') {
@@ -103,7 +144,7 @@ getLocation () {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    height: 600,
+    height: 1000,
     width: 400,
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -116,6 +157,24 @@ const styles = StyleSheet.create({
   arrow:{
     width: 40,
     height: 20,
+  },
+  containerImg:{
+     flex: 1,
+    backgroundColor: '#F7B50C',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profile :{
+  // marginTop:0,
+   
+    alignItems: 'center',
+    justifyContent: 'center',
+    // position: 'absolute',
+     // bottom: 0
+  },
+  img:{
+  width: 200,
+    height: 200,
   }
 });
 
