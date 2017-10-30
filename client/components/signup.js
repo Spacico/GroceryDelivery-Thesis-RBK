@@ -25,7 +25,7 @@ import {Header,Container, Button } from 'native-base';
 //   })
 // }
   onClickButton(){
-        fetch('http:192.168.2.20:1128/consumerSignup', {//192.168.1.7
+        fetch('http:192.168.1.12:1128/consumerSignup', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -72,7 +72,7 @@ else {
 
 
             <Image style={styles.container}
-            source = {require('../images/login3.jpg')}
+            source = {require('../images/main.jpg')}
             >
 
             <StatusBar

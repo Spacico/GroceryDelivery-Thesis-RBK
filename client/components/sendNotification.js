@@ -28,7 +28,7 @@ export default class sendNotification extends React.Component {
 
 
     onClickButton(){
-        fetch('http:192.168.2.99:1128/sendNotification', {//192.168.1.7
+        fetch('http:192.168.1.12:1128/sendNotification', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -73,7 +73,7 @@ else {
             <View  KeyboardAvoidingView behavior='padding' style={styles.container}>
 
 <Image style={styles.container}
-            source = {require('../images/login3.jpg')}
+            source = {require('../images/main.jpg')}
             >
 
             <StatusBar
