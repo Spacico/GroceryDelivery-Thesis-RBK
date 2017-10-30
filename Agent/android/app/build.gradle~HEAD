@@ -107,9 +107,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     signingConfigs {
         release {
             storeFile file(MYAPP_RELEASE_STORE_FILE)
@@ -118,9 +115,6 @@ android {
             keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
->>>>>>> agent map directions
-=======
->>>>>>> Collect all folders togother
     splits {
         abi {
             reset()
@@ -133,13 +127,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             signingConfig signingConfigs.release
->>>>>>> agent map directions
-=======
->>>>>>> Collect all folders togother
         }
     }
     // applicationVariants are e.g. debug, release
