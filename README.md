@@ -1,1 +1,0 @@
-# GroceryDelivery-Thesis-RBK
