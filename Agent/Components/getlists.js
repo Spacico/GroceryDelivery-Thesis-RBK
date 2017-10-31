@@ -15,50 +15,18 @@ export default class Getlists extends Component {
         super(props);
         this.state = {
             changeFlag: this.props.changeFlag,
-            lists: '',
-            fakeData: [
-              {
-                "consumerName": "Shahd",
-                "items": "Potato 1kg, Orange 2.5kg, Eggs 1-board",
-                "storeInfo": "Tareq mall, Tabarbuor",
-                "location": {
-                  "latitude": 31.0221525,
-                  "longitude": 37.522748
-                }
-              },
-              {
-                "consumerName": 'Hussen',
-                "items": 'Potato 1kg, Orange 2.5kg, Eggs 1-board',
-                "storeInfo": 'Sameh mall, Tabarbuor',
-                "location": {
-                  "latitude": 31.0221525,
-                  "longitude": 36.522748
-                }
-              },
-              {
-                "consumerName": 'Hamshari',
-                "items": 'Ships Lase 1jd, Orange 2.5kg, Eggs 1-board',
-                "storeInfo": 'Mecca mall, Mecca st.',
-                "location": {
-                  "latitude": 30.0221525,
-                  "longitude": 32.522748
-                }
-              },
-              {
-                "consumerName": 'Tahseen',
-                "items": 'Potato 1kg, Orange 2.5kg, Eggs 1-board',
-                "storeInfo": 'Yasser mall, Jandawil',
-                "location": {
-                  "latitude": 39.0221525,
-                  "longitude": 37.522748
-                }
-              }
-            ]
+            lists: ''
+            // getLocation: this.props.getLocation,
+            // changeLocation: this.props.changeLocation
         };
     }
     //fetch active lists from database
     gitlistsfunc() {
+<<<<<<< HEAD
         return fetch('http:192.168.1.19:1128/checkAvailableLists')
+=======
+        return fetch('http:192.168.2.90:1128/checkAvailableLists')
+>>>>>>> agent map directions
             .then(response => response.json())
             .then(data => {
                 this.setState({ lists: data });
@@ -74,6 +42,7 @@ export default class Getlists extends Component {
                 <View>
                     {this.state.lists.map((list, index) => (
                         <List list={list} key={index}/>
+                        // getLocation={this.state.getLocation} changeLocation={this.state.changeLocation}
                     ))}
                 </View>
             );

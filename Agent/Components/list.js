@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Modal, StyleSheet, TouchableHighlight, View, Text, AppRegistry, Button } from 'react-native';
 import Mapo from './mapView';
+import getDirections from 'react-native-google-maps-directions'
+
 export default class List extends Component {
     constructor(props) {
         super(props);
@@ -8,6 +10,8 @@ export default class List extends Component {
             list: this.props.list,
             modalListInfo: false,
             modalGetLocation: false
+            // getLocation: this.props.getLocation,
+            // changeLocation: this.props.changeLocation
         };
     }
     setModalVisible(modalName, visible) {
@@ -15,7 +19,7 @@ export default class List extends Component {
     }
 
     acceptList (listId) {
-      fetch('http:192.168.2.30:1128/acceptsList', {
+      fetch('http:192.168.2.90:1128/acceptsList', {
           method: 'POST',
           headers: {
               Accept: 'application/json',
@@ -34,6 +38,26 @@ export default class List extends Component {
           });
 
       alert(`List of id ${listId} has been accepted`)
+    }
+
+    handleGetDirections = () => {
+      const data = {
+        //  source: {
+        //   latitude: -33.8356372,
+        //   longitude: 18.6947617
+        // },
+        destination: {
+          latitude: this.props.list.location.latitude,
+          longitude: this.props.list.location.longitude
+        },
+        params: [
+          {
+            key: "dirflg",
+            value: "d"
+          }
+        ]
+      }
+      getDirections(data)
     }
 
     render() {
@@ -76,12 +100,17 @@ export default class List extends Component {
                     </Text>
                     {this.state.list.storeInfo}
                   </Text>
+<<<<<<< HEAD
                   <Button
                     onPress={() => {
                       this.setModalVisible('modalGetLocation', !this.state.modalGetLocation);
                     }}
                     title="Get Location"
                   />
+=======
+
+                  <Button onPress={this.handleGetDirections} title="Get Directions" />
+>>>>>>> agent map directions
                   <View style={styles.alternativeLayoutButtonContainer}>
                     <Button
                       onPress={() => {
@@ -107,9 +136,15 @@ export default class List extends Component {
                 visible={this.state.modalGetLocation}
                 onRequestClose={() => {this.setModalVisible('modalGetLocation', !this.state.modalGetLocation)}}
                 >
+<<<<<<< HEAD
                 <View>
                   <Mapo listLocation={this.state.list.location}/>
                 </View>
+=======
+                // <View>
+                //   // <Mapo getLocation={this.state.getLocation} changeLocation={this.state.changeLocation} listLocation={this.state.list.location}/>
+                // </View>
+>>>>>>> agent map directions
               </Modal>
             </View>
           </View>

@@ -94,7 +94,8 @@ app.post('/agentLogin', (req, res) => {
         if (err) {
             console.log(err);
         } else if (!user) {
-            var err = 'User not found.';
+            var err = {};
+            err.message = 'User not found.';
             console.log('error', err);
             res.send(err);
         } else if (user) {
@@ -102,9 +103,11 @@ app.post('/agentLogin', (req, res) => {
                 if (result === true) {
                     req.session.username = user.agentName;
                     console.log(user);
-                    res.send('login');
+                    res.send(true);
                 } else {
-                    res.send('Wrong password.');
+                  var err = {};
+                  err.message = 'Wrong password.'
+                    res.send(err);
                 }
             });
         }

@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
 
     onClickLogin() {
-        fetch('http:192.168.1.19:1128/agentLogin', {
+        fetch('http:192.168.2.90:1128/agentLogin', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -29,13 +29,20 @@ export default class Login extends Component {
             },
             body: JSON.stringify(this.state)
         })
-            .then(res => {
-                console.log('hi');
-            })
-            .catch(err => {
-                throw err;
-            });
-        this.state.changeFlag('getLists');
+        .then( response => {
+           return response.json()
+        })
+        .then( responseJson => {
+          if(responseJson === true){
+            this.state.changeFlag('getLists');
+          }else{
+            alert (responseJson.message);
+          }
+        })
+        .catch(err => {
+            alert (err);
+            throw err;
+        });
     }
     render() {
         return (

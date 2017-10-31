@@ -19,11 +19,39 @@ export default class App extends Component {
 
         this.state = {
             flag: 'main'
+            // latitude: 0.0,
+            // longitude: 0.0,
+            // error: null
         };
     }
     changeFlag(sth) {
         this.setState({ flag: sth });
     }
+    //
+    // changeLocation(obj){
+    //     this.setState({
+    //         latitude: obj.latitude,
+    //         longitude: obj.longitude
+    //     })
+    // }
+    // getLocation () {
+    //   return {latitude: this.state.latitude, longitude: this.state.longitude}
+    // }
+    // componentDidMount() {
+    //     navigator.geolocation.getCurrentPosition(
+    //       (position) => {
+    //         alert(position.coords.latitude)
+    //         this.setState({
+    //           latitude: position.coords.latitude,
+    //           longitude: position.coords.longitude,
+    //           error: null,
+    //         });
+    //       },
+    //       (error) => this.setState({ error: error.message }),
+    //       { enableHighAccuracy: true, timeout: 200}
+    //     );
+    //     alert (this.state.latitude)
+    //   }
     render() {
         if (this.state.flag === 'main') {
             return (
@@ -55,10 +83,10 @@ export default class App extends Component {
             return <Signup changeFlag={this.changeFlag.bind(this)} />;
         } else if (this.state.flag === 'getLists') {
             return <Getlists changeFlag={this.changeFlag.bind(this)} />;
+            // getLocation={this.getLocation.bind(this)} changeLocation={this.changeLocation.bind(this)}
         }
     }
 }
-
 AppRegistry.registerComponent('App', () => App);
 const styles = StyleSheet.create({
     container: {

@@ -13,12 +13,10 @@ export default class Mapo extends React.Component {
 
         this.state = {
           changeFlag: props.changeFlag,
-          latitude: props.latitude,
-  	      longitude: props.longitude,
-  	      changeLocation:props.changeLocation,
-  	      getLocation: props.getLocation,
           listLocation: props.listLocation,
   	      error: null
+          // getLocation: this.props.getLocation,
+          // changeLocation: this.props.changeLocation
         };
     }
 
@@ -28,13 +26,20 @@ export default class Mapo extends React.Component {
             <MapView
                style={styles.map}
                region={{
-                 latitude: this.state.listLocation.latitude,
-                 longitude: this.state.listLocation.longitude,
+                 latitude: this.state.getLocation().latitude,
+                 longitude: this.state.getLocation().longitude,
                  latitudeDelta: 0.0009,
                  longitudeDelta: 0.04999,
                }}
+               onPress = {(e) => {
+                 this.state.changeLocation({
+                 	latitude: e.nativeEvent.coordinate.latitude,
+                   longitude: e.nativeEvent.coordinate.longitude
+               })
+              }}
              >
-                <MapView.Marker coordinate={{latitude:this.state.listLocation.latitude,longitude:this.state.listLocation.longitude}}/>
+             <MapView.Marker coordinate={{latitude:this.state.listLocation.latitude,longitude:this.state.listLocation.longitude}}/>
+             <MapView.Marker coordinate={{latitude:this.state.getLocation().latitude,longitude:this.state.getLocation().longitude}} pinColor="green"/>
 
              </MapView>
            </View>
