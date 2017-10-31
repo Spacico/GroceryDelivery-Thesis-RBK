@@ -36,7 +36,7 @@ export default class Login extends Component {
           if(responseJson === true){
             this.state.changeFlag('getLists');
           }else{
-            alert (responseJson.message);
+            alert (responseJson.message)
           }
         })
         .catch(err => {
