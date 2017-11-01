@@ -12,6 +12,7 @@ import {
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Getlists from './Components/getlists';
+import Profile from './Components/myProfile';
 
 export default class App extends Component {
     constructor(props) {
@@ -56,6 +57,7 @@ export default class App extends Component {
         if (this.state.flag === 'main') {
             return (
                 <View style={styles.container}>
+                <Profile />
                     <View>
                         <TouchableOpacity
                             style={styles.buttonContainer}
