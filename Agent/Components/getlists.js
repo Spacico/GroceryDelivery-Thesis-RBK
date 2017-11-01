@@ -15,14 +15,16 @@ export default class Getlists extends Component {
     super(props);
     this.state = {
       changeFlag: this.props.changeFlag,
-      lists: ''
+      lists: '',
+      currentList: '',
+      historyLists: ''
       // getLocation: this.props.getLocation,
       // changeLocation: this.props.changeLocation
     };
   }
-  //fetch active lists from database
+  //Get active lists from database
   gitlistsfunc() {
-    return fetch('http:192.168.2.90:1128/checkAvailableLists')
+    return fetch('http:192.168.1.8:1128/checkAvailableLists')
       .then(response => response.json())
       .then(data => {
         this.setState({ lists: data });
@@ -31,6 +33,33 @@ export default class Getlists extends Component {
         throw err;
       });
   }
+
+  // Get agent current list from route /current/list
+  getCurrentList() {
+    return fetch('http:192.168.1.8:1128/current/list')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ currentList: data });
+      })
+      .catch(err => {
+        alert(err);
+        throw err;
+      });
+  }
+
+  // Get agent History from route /history/lists
+  getHistoryLists() {
+    return fetch('http:192.168.1.8:1128/history/lists')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ historyLists: data });
+      })
+      .catch(err => {
+        alert(err);
+        throw err;
+      });
+  }
+
   //function for sepersting the objects into components 'List componenet'
   run() {
     if (this.state.lists.length) {
@@ -50,7 +79,17 @@ export default class Getlists extends Component {
       <View>
         <View>
           <TouchableOpacity onPress={this.gitlistsfunc.bind(this)}>
-            <Text style={styles.buttonText}>GETLIST</Text>
+            <Text style={styles.buttonText}>Get lists</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={this.getCurrentList}>
+            <Text style={styles.buttonText}>Current list</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={this.getHistoryLists}>
+            <Text style={styles.buttonText}>History</Text>
           </TouchableOpacity>
         </View>
         <ScrollView>{this.run()}</ScrollView>
