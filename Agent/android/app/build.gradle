@@ -107,9 +107,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     signingConfigs {
         release {
             storeFile file(MYAPP_RELEASE_STORE_FILE)
@@ -118,28 +115,20 @@ android {
             keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
->>>>>>> agent map directions
-=======
->>>>>>> Collect all folders togother
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86"
+
         }
     }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             signingConfig signingConfigs.release
->>>>>>> agent map directions
-=======
->>>>>>> Collect all folders togother
         }
     }
     // applicationVariants are e.g. debug, release
@@ -158,16 +147,9 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-maps')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile(project(':react-native-maps')){
-        exclude group: 'com.google.android.gms', module: 'play-services-base'
-        exclude group: 'com.google.android.gms', module: 'play-services-maps'
-    }
-    compile 'com.google.android.gms:play-services-base:10.0.1'
-    compile 'com.google.android.gms:play-services-maps:10.0.1'
 }
 
 // Run this once to be able to run the application with BUCK

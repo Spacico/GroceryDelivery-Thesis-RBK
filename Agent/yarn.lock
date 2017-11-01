@@ -3361,14 +3361,6 @@ react-devtools-core@^2.5.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-native-google-maps-directions@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-google-maps-directions/-/react-native-google-maps-directions-1.1.2.tgz#a362a9c3c266d9c7e853696e2ffe99193f67d64d"
-
-react-native-maps@^0.17.1:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.17.1.tgz#ab2236341fd984dac8864202ae55331bc262f60c"
-
 react-native@0.49.5:
   version "0.49.5"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.49.5.tgz#89f0fe93a8da4db2670c4bd0d81131a2ff617f27"
