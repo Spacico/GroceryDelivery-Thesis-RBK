@@ -8,23 +8,37 @@ import {
     TouchableOpacity,
     AppRegistry
 } from 'react-native';
-
+import { SideMenu, List, ListItem } from 'react-native-elements'
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Getlists from './Components/getlists';
-import Profile from './Components/myProfile';
+// import Profile from './Components/myProfile';
 
 export default class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            flag: 'main'
+            flag: 'main',
+            isOpen: false
             // latitude: 0.0,
             // longitude: 0.0,
             // error: null
         };
+        this.toggleSideMenu = this.toggleSideMenu.bind(this)
     }
+
+    onSideMenuChange (isOpen: boolean) {
+      this.setState({
+        isOpen: isOpen
+      })
+    }
+    toggleSideMenu () {
+      this.setState({
+        isOpen: !this.state.isOpen
+      })
+    }
+
     changeFlag(sth) {
         this.setState({ flag: sth });
     }
@@ -54,11 +68,38 @@ export default class App extends Component {
     //     alert (this.state.latitude)
     //   }
     render() {
+      // SideMenu
+      const MenuComponent = (
+        <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
+          <List containerStyle={{marginBottom: 20}}>
+          {
+            list.map((l, i) => (
+              <ListItem
+                roundAvatar
+                onPress={() => console.log('Pressed')}
+                avatar={l.avatar_url}
+                key={i}
+                title={l.name}
+                subtitle={l.subtitle}
+              />
+            ))
+          }
+          </List>
+        </View>
+      )
+
         if (this.state.flag === 'main') {
             return (
+              <View>
+              <SideMenu
+                isOpen={this.state.isOpen}
+                onChange={this.onSideMenuChange.bind(this)}
+                menu={MenuComponent}>
+                <App toggleSideMenu={this.toggleSideMenu.bind(this)} />
+              </SideMenu>
                 <View style={styles.container}>
                 <Profile />
-                    <View>
+
                         <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={() => {
@@ -80,12 +121,42 @@ export default class App extends Component {
                 </View>
             );
         } else if (this.state.flag === 'login') {
-            return <Login changeFlag={this.changeFlag.bind(this)} />;
+            return (
+              <View>
+              <SideMenu
+                isOpen={this.state.isOpen}
+                onChange={this.onSideMenuChange.bind(this)}
+                menu={MenuComponent}>
+                <App toggleSideMenu={this.toggleSideMenu.bind(this)} />
+              </SideMenu>
+              <Login changeFlag={this.changeFlag.bind(this)} />;
+              </View>
+            )
         } else if (this.state.flag === 'signup') {
-            return <Signup changeFlag={this.changeFlag.bind(this)} />;
+            return (
+              <View>
+              <SideMenu
+                isOpen={this.state.isOpen}
+                onChange={this.onSideMenuChange.bind(this)}
+                menu={MenuComponent}>
+                <App toggleSideMenu={this.toggleSideMenu.bind(this)} />
+              </SideMenu>
+              <Signup changeFlag={this.changeFlag.bind(this)} />;
+              </View>
+          )
         } else if (this.state.flag === 'getLists') {
-            return <Getlists changeFlag={this.changeFlag.bind(this)} />;
-            // getLocation={this.getLocation.bind(this)} changeLocation={this.changeLocation.bind(this)}
+            return (
+              <View>
+              <SideMenu
+                isOpen={this.state.isOpen}
+                onChange={this.onSideMenuChange.bind(this)}
+                menu={MenuComponent}>
+                <App toggleSideMenu={this.toggleSideMenu.bind(this)} />
+              </SideMenu>
+              <Getlists changeFlag={this.changeFlag.bind(this)} />;
+              // getLocation={this.getLocation.bind(this)} changeLocation={this.changeLocation.bind(this)}
+              </View>
+            )
         }
     }
 }
