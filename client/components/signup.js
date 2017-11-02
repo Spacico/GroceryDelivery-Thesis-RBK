@@ -25,7 +25,7 @@ import {Header,Container, Button } from 'native-base';
 //   })
 // }
   onClickButton(){
-        fetch('http:192.168.1.12:1128/consumerSignup', {//192.168.1.7
+        fetch('http:192.168.1.4:1128/consumerSignup', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -36,8 +36,9 @@ import {Header,Container, Button } from 'native-base';
             )
         })
        .then((response) => {
+         alert(response)
            return response.json()
-           alert(response.json())
+          
 
        })
        .then((responseJson) => {

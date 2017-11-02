@@ -20,7 +20,8 @@ export default class mapView extends React.Component {
 	      longitude: props.longitude,
 	      changeLocation:props.changeLocation,
 	      getLocation: props.getLocation,
-	      error: null
+	      error: null,
+
         };
     }
 
@@ -40,7 +41,7 @@ export default class mapView extends React.Component {
             onPress = {(e) => {
               this.state.changeLocation({
               	latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude
+                longitude: e.nativeEvent.coordinate.longitude,
             })
               
               alert('latitude:' + this.state.getLocation().latitude + '   longitude' + this.state.getLocation().longitude)
@@ -49,8 +50,8 @@ export default class mapView extends React.Component {
               region={{
 	            latitude: this.state.latitude,
 	            longitude: this.state.longitude,
-	            latitudeDelta: 0.000922,
-	            longitudeDelta: 0.04999
+	            latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
           }}
           >
           <MapView.Marker coordinate={{latitude:this.state.getLocation().latitude,longitude:this.state.getLocation().longitude}}/>
@@ -107,8 +108,8 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-    width: 1000,
-    height: 6000,
+    width: width,
+    height: height,
   },
   arrow:{
     width: 40,

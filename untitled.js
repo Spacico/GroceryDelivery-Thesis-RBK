@@ -26,6 +26,13 @@
       //           </View>
 
 
+
+// <View style={styles.profile}>
+//             <Image style={styles.sn}
+//             source = {require('./images/signup.png')}
+//             />
+// </View>
+
 // <Icon.Button name="facebook" backgroundColor="#3b5998">
 //     <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
 //   </Icon.Button>
@@ -51,3 +58,10 @@
 // to install react-native-elements
       // npm install react-native-elements --save
             // react-native link
+
+
+
+
+
+
+          

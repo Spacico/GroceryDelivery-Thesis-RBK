@@ -3,10 +3,12 @@ var http=require('http');
 // var bcrypt = require('bcrypt-nodejs');
 var mongoose =require ('mongoose');
 var bodyParser = require('body-parser');
-var db=require('./database/index');
+// var db=require('./database/index');
 var Agents=require('./database/model/Agents');
 var Consumers=require('./database/model/Consumers');
 var Lists=require('./database/model/Lists');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 var port=process.env.PORT || 1128;
 var app = express();
@@ -62,6 +64,34 @@ app.post ('/acceptsList', async (req, res) => {
 })
 
 
-app.listen(port, function() {
-  console.log(`listening on port ${port}`);
+// app.listen(port, function() {
+//   console.log(`listening on port ${port}`);
+// });
+   io.on('connection', function(socket){
+      console.log("loleleeeeeeeeeeeeesh")
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
 });
+   
+http.listen(port, function() {
+
+
+console.log("    *   '*");
+console.log("              *");
+console.log("                   *");
+console.log("                           *");
+console.log("                  *");
+console.log("                         *");
+console.log(`you are now connected to:  ${port}`);
+});
+
+// io.on('connection', function(socket){
+//   socket.on('chat message', function(msg){
+//     console.log('message: ' + msg);
+//   });
+// });
+// io.on('connection', function(socket){
+//   socket.broadcast.emit('hi');
+// });
+
