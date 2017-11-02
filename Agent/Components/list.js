@@ -27,7 +27,7 @@ export default class List extends Component {
   }
 
   acceptList(listId) {
-    fetch('http:192.168.1.8:1128/acceptsList', {
+    fetch('https://serverna.herokuapp.com/acceptsList', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

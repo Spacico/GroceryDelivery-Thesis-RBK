@@ -21,7 +21,7 @@ export default class Login extends Component {
   }
 
   onClickLogin() {
-    fetch('http:192.168.1.8:1128/agentLogin', {
+    fetch('https://serverna.herokuapp.com/agentLogin', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -6,11 +6,12 @@ export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          list: ''
+          currentList: '',
+          historyLists: ''
         };
     }
     getCurrentList () {
-      return fetch('http:192.168.2.90:1128/checkCurrentList')
+      return fetch('https://serverna.herokuapp.com/checkCurrentList')
         .then(response => response.json())
         .then(data => {
             this.setState({ list: data });

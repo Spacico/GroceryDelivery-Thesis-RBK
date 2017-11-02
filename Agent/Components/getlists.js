@@ -24,7 +24,7 @@ export default class Getlists extends Component {
   }
   //Get active lists from database
   gitlistsfunc() {
-    return fetch('http:192.168.1.8:1128/checkAvailableLists')
+    return fetch('https://serverna.herokuapp.com/checkAvailableLists')
       .then(response => response.json())
       .then(data => {
         this.setState({ lists: data });
@@ -36,7 +36,7 @@ export default class Getlists extends Component {
 
   // Get agent current list from route /current/list
   getCurrentList() {
-    return fetch('http:192.168.1.8:1128/current/list')
+    return fetch('https://serverna.herokuapp.com/current/list')
       .then(response => response.json())
       .then(data => {
         this.setState({ currentList: data });
@@ -49,7 +49,7 @@ export default class Getlists extends Component {
 
   // Get agent History from route /history/lists
   getHistoryLists() {
-    return fetch('http:192.168.1.8:1128/history/lists')
+    return fetch('https://serverna.herokuapp.com/history/lists')
       .then(response => response.json())
       .then(data => {
         this.setState({ historyLists: data });
