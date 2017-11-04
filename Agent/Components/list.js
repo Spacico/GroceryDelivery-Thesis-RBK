@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Modal, StyleSheet, TouchableHighlight, View, Text, AppRegistry, Button } from 'react-native';
 import Mapo from './mapView';
+import SocketIOClient from 'socket.io-client';
+
 export default class List extends Component {
     constructor(props) {
         super(props);
@@ -9,13 +11,14 @@ export default class List extends Component {
             modalListInfo: false,
             modalGetLocation: false
         };
+          this.socket = SocketIOClient('http://192.168.2.9:8080',{jsonp:false});
     }
     setModalVisible(modalName, visible) {
       this.setState({[modalName]: visible});
     }
 
     acceptList (listId) {
-      fetch('http:192.168.1.4:5000/acceptsList', {
+      fetch('http://192.168.2.9:8080/acceptsList', {
           method: 'POST',
           headers: {
               Accept: 'application/json',
@@ -25,15 +28,29 @@ export default class List extends Component {
             listId: this.state.list._id
           })
       })
-          .then(res => {
-              alert ('list accepted successfully')
-          })
-          .catch(err => {
-            alert(err)
-              throw err;
-          });
 
-      alert(`List of id ${listId} has been accepted`)
+      .then((response) => {
+        // alert(responseJson.message)
+         var message = "Hi I make event";
+         this.socket.emit('acceptList',message)
+           return response.json()
+
+       })
+       .then((responseJson) => {
+         
+           // return responseJson;
+//            if(responseJson){
+           alert('you accepted the list successfuly')
+// else {
+//     alert("Please try again !!!")
+// }
+       })
+       .catch((error) => {
+            // reject(error);
+            alert("Error !!!  Please try again   " + error)
+       });
+
+      // alert(`List of id ${listId} has been accepted`)
     }
 
     render() {
@@ -137,4 +154,4 @@ const styles = StyleSheet.create({
   }
 })
 
-AppRegistry.registerComponent('List', () => List);
+// AppRegistry.registerComponent('List', () => List);

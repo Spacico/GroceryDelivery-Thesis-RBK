@@ -23,7 +23,7 @@ export default class App extends Component {
             flag: 'main',
             lists:[]
         };
-        this.socket = SocketIOClient('http://192.168.1.4:1128',{jsonp:false});
+        this.socket = SocketIOClient('http://192.168.2.9:8080',{jsonp:false});
          this.socket.on('sendlist',() => {
             //Alert.alert('message arrive')
             PushNotification.localNotification({
@@ -112,7 +112,7 @@ export default class App extends Component {
     }
 }
 
-AppRegistry.registerComponent('App', () => App);
+// AppRegistry.registerComponent('App', () => App);
 const styles = StyleSheet.create({
     container: {
         flex: 1,

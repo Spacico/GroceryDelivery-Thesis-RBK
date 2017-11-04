@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
 
     onClickLogin() {
-        fetch('http:192.168.1.4:5000/agentLogin', {
+        fetch('http://192.168.2.9:8080/agentLogin', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -90,7 +90,7 @@ export default class Login extends Component {
         );
     }
 }
-AppRegistry.registerComponent('Login', () => Login);
+// AppRegistry.registerComponent('Login', () => Login);
 const styles = StyleSheet.create({
     container: {
         flex: 1

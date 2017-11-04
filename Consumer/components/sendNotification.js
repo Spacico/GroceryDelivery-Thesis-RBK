@@ -6,10 +6,17 @@ import {Header,Container, Button } from 'native-base';
 // import Login from './components/login'
 import MapView from 'react-native-maps';
 import SocketIOClient from 'socket.io-client';
+import PushNotification from 'react-native-push-notification'
 export default class sendNotification extends React.Component {
     constructor (props){
         super(props);
-        this.socket = SocketIOClient('http://192.168.1.4:1128',{jsonp:false});
+        this.socket = SocketIOClient('http://192.168.2.9:8080',{jsonp:false});
+         this.socket.on('acceptlist',() => {
+            //Alert.alert('message arrive')
+            PushNotification.localNotification({
+                message: "your list accpted" })
+          //   //alert('lest')
+           })
         this.state = {
             changeFlag: props.changeFlag,
             consumerName:'',
@@ -31,7 +38,7 @@ export default class sendNotification extends React.Component {
     onClickButton(){
       // var message = " plah polah aijaja"
       // this.socket.emit('sendList',message)
-        fetch('http:192.168.2.9:1128/sendNotification', {//192.168.1.7
+        fetch('http:192.168.2.9:8080/sendNotification', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -42,7 +49,7 @@ export default class sendNotification extends React.Component {
             )
         })
        .then((response) => {
-        // alert(responseJson.message)
+        alert('inside sendnotification')
          var message = "Hi I make event";
          this.socket.emit('sendList',message)
            return response.json()
