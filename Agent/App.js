@@ -8,42 +8,93 @@ import {
   TouchableOpacity,
   AppRegistry
 } from 'react-native';
-// import { SideMenu, List, ListItem } from 'react-native-elements'
-import Signup from './Components/Signup';
+import { StackNavigator, Tabs } from 'react-navigation';
+import PushNotification from 'react-native-push-notification';
+import SocketIOClient from 'socket.io-client';
+
+import Home from './Components/Home';
 import Login from './Components/Login';
-import Getlists from './Components/getlists';
+import CurrentList from './Components/CurrentList';
+import AvailableLists from './Components/availableLists';
+import History from './Components/History';
+
 // import Profile from './Components/myProfile';
+
+const NavigationApp = StackNavigator({
+  Home: { screen: Home },
+  CurrentList: { screen: CurrentList },
+  AvailableLists: { screen: AvailableLists },
+  History: { screen: History }
+});
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-
+    this.socket = SocketIOClient('http://192.168.2.9:8080', { jsonp: false });
+    this.socket.on('sendlist', () => {
+      PushNotification.localNotification({
+        message: 'there is new consumer'
+      });
+    });
     this.state = {
       flag: 'main',
       isOpen: false,
-      currentList: '',
-      historyLists: []
+      currentList: {
+        _id: '59f18c0e734d1d0e5abf6221',
+        consumerName: 'Hussen',
+        items: 'Potato 1kg, Orange 2.5kg, Eggs 1-board',
+        storeInfo: 'Sameh mall, Tabarbuor',
+        available: false,
+        location: { latitude: 31.982615, longitude: 35.833657 },
+        agentName: 'osamaths'
+      },
+      historyLists: [
+        {
+          _id: '59f18c20734d1d0e5abf6226',
+          consumerName: 'Hamshari',
+          items: 'Ships Lase 1jd, Orange 2.5kg, Eggs 1-board',
+          storeInfo: 'Mecca mall, Mecca st.',
+          available: true,
+          location: { latitude: 31.982688, longitude: 35.833999 },
+          agentName: 'osamaths',
+          paid: 5
+        },
+        {
+          _id: '59f986306d784e556d0c75b3',
+          items: 'potato 5kg, Pepsi 2l, Burger 1000g',
+          storeInfo: 'Amman',
+          consumerName: 'Doaa',
+          available: true,
+          location: { latitude: 31.982115, longitude: 35.833057 },
+          agentName: 'osamaths',
+          paid: 7,
+          __v: 0
+        }
+      ]
     };
-    
+
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
+
+  onLearnMore = currentList => {
+    this.props.navigation.navigate('CurrentList', { currentList });
+  };
 
   // Current list methods
   getCurrentList() {
     return this.state.currentList;
   }
   setCurrentList(list) {
-    this.setState({list: list});
+    this.setState({ list: list });
   }
-
   // Lists history
   getHistoryLists() {
     return this.state.historyLists;
   }
-  addList(list) {
-    this.setState({historyLists.push (list)};
+  addListToHistory(list) {
+    this.setState({ list: this.state.list.concat([list]) });
   }
-
+  // Menu side
   onSideMenuChange(isOpen: boolean) {
     this.setState({
       isOpen: isOpen
@@ -66,13 +117,6 @@ export default class App extends Component {
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => {
-              this.changeFlag('signup');
-            }}>
-            <Text style={styles.buttonText}>SIGNUP</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => {
               this.changeFlag('login');
             }}>
             <Text style={styles.buttonText}>LOGIN</Text>
@@ -82,11 +126,8 @@ export default class App extends Component {
       );
     } else if (this.state.flag === 'login') {
       return <Login changeFlag={this.changeFlag.bind(this)} />;
-    } else if (this.state.flag === 'signup') {
-      return <Signup changeFlag={this.changeFlag.bind(this)} />;
-    } else if (this.state.flag === 'getLists') {
-      return <Getlists changeFlag={this.changeFlag.bind(this)} />;
-      // getLocation={this.getLocation.bind(this)} changeLocation={this.changeLocation.bind(this)}
+    } else if (this.state.flag === 'tabs') {
+      return <NavigationApp />;
     }
   }
 }

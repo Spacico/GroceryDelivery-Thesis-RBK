@@ -34,7 +34,7 @@ export default class Login extends Component {
       })
       .then(responseJson => {
         if (responseJson === true) {
-          this.state.changeFlag('getLists');
+          this.state.changeFlag('tabs');
         } else {
           alert(responseJson.message);
         }
