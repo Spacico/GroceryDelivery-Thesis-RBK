@@ -16,12 +16,23 @@ import Login from './components/login';
 import Signup from './components/signup';
 import About from './components/aboutUs';
 import Mapview from './components/mapView';
-
-
+import SocketIOClient from 'socket.io-client';
+import PushNotification from 'react-native-push-notification'
 export default class App extends Component {
 
   constructor(props) {
     super(props);
+    // PushNotification.localNotification({
+    //             message: "there is new consumer" })
+    //       //   //alert('lest')
+         
+    // this.socket = SocketIOClient('http://192.168.1.4:1128',{jsonp:false});
+    //      this.socket.on('acceptlist',() => {
+    //         //Alert.alert('message arrive')
+    //         PushNotification.localNotification({
+    //             message: "your list accpted" })
+    //       //   //alert('lest')
+    //        })
     //alert(MapView.Marker());
     this.state = {
        flag: 'main',
