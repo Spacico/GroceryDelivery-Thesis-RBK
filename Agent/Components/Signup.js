@@ -23,7 +23,7 @@ export default class Signup extends Component {
         };
     }
     onClickSignup() {
-        fetch('http:192.168.1.4:5000/agentSignup', {
+        fetch('http://192.168.2.9:8080/agentSignup', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

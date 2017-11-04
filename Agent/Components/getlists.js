@@ -58,7 +58,7 @@ export default class Getlists extends Component {
     }
     //fetch active lists from database
     gitlistsfunc() {
-        return fetch('http:192.168.1.4:5000/checkAvailableLists')
+        return fetch('http://192.168.2.9:8080/checkAvailableLists')
             .then(response => response.json())
             .then(data => {
                 alert(data[0].consumerName)
@@ -117,7 +117,7 @@ export default class Getlists extends Component {
         );
     }
 }
-AppRegistry.registerComponent('Getlists', () => Getlists);
+// AppRegistry.registerComponent('Getlists', () => Getlists);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
