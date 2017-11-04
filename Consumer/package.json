@@ -8,39 +8,24 @@
   },
   "dependencies": {
     "@types/react-sidebar": "^2.2.2",
-    "link": "^0.1.5",
     "native-base": "^2.3.3",
     "react": "16.0.0-beta.5",
-    "react-gif": "^0.1.0",
-    "react-native": "^0.49.5",
+    "react-native": "0.49.3",
     "react-native-elements": "^0.17.0",
     "react-native-maps": "^0.17.1",
-    "react-native-off-canvas-menu": "^0.1.31",
-    "react-native-tab-navigator": "^0.3.4",
-    "react-native-vector-icons": "^4.4.2",
+    "react-native-push-notification": "^3.0.1",
     "react-navigation": "^1.0.0-beta.15",
-    "react-sidebar": "^2.3.2"
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
-    "babel-jest": "21.2.0",
+    "babel-jest": "^21.2.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-react-native": "4.0.0",
-    "jest": "21.2.1",
-    "react-test-renderer": "16.0.0-beta.5"
+    "jest": "^21.2.1",
+    "react-test-renderer": "^16.0.0-beta.5"
   },
   "jest": {
-    "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules"
-    ],
-    "modulePathIgnorePatterns": [
-      "node_modules"
-    ]
-  },
-  "moduleFileExtensions": [
-    "js",
-    "jsx"
-  ]
+    "preset": "react-native"
+  }
 }
