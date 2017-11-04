@@ -31,7 +31,7 @@ export default class sendNotification extends React.Component {
     onClickButton(){
       // var message = " plah polah aijaja"
       // this.socket.emit('sendList',message)
-        fetch('http:192.168.1.4:1128/sendNotification', {//192.168.1.7
+        fetch('http:192.168.2.9:1128/sendNotification', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

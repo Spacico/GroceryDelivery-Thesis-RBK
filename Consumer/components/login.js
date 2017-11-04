@@ -3,9 +3,6 @@ import {StatusBar, Image,View,StyleSheet,TouchableHighlight,Text,TextInput} from
 import SendNotification from './sendNotification'
 import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
 import {Header,Container, Button } from 'native-base';
-// import TabNavigator from 'react-native-tab-navigator';
-//SideBar
-// import {TabNavigator} from "react-navigator";
 
 export default class login extends React.Component {
     constructor(props) {
@@ -25,7 +22,7 @@ export default class login extends React.Component {
   
 
     onClickButton(){
-        fetch('http:192.168.1.4:1128/consumerLogin', {//192.168.1.7
+        fetch('http:192.168.2.9:8080/consumerLogin', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
