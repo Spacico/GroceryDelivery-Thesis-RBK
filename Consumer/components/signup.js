@@ -12,7 +12,7 @@ import {Header,Container, Button } from 'native-base';
     this.state = {
       changeFlag: props.changeFlag,
       userName : '',
-      email:"",
+      email:'',
       password : ''
     }
      // this.toggleSideMenu = this.toggleSideMenu.bind(this)
