@@ -5,11 +5,18 @@ import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-
 import {Header,Container, Button } from 'native-base';
 // import Login from './components/login'
 import MapView from 'react-native-maps';
-
+import SocketIOClient from 'socket.io-client';
+import PushNotification from 'react-native-push-notification'
 export default class sendNotification extends React.Component {
     constructor (props){
         super(props);
-
+        this.socket = SocketIOClient('http://192.168.2.9:8080',{jsonp:false});
+         this.socket.on('acceptlist',() => {
+            //Alert.alert('message arrive')
+            PushNotification.localNotification({
+                message: "your list accpted" })
+          //   //alert('lest')
+           })
         this.state = {
             changeFlag: props.changeFlag,
             consumerName:'',
@@ -21,14 +28,17 @@ export default class sendNotification extends React.Component {
             changeLocation: props.changeLocation,
             getLocation: props.getLocation
 
-        };
+        }; 
+
     }
     //http:192.168.1.12:1128/sendNotification 'osama'
     //http:192.168.1.7:8000/send' 'Doaa'
 
 
     onClickButton(){
-        fetch('http:192.168.2.99:1128/sendNotification', {//192.168.1.7
+      // var message = " plah polah aijaja"
+      // this.socket.emit('sendList',message)
+        fetch('http:192.168.2.9:8080/sendNotification', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -39,41 +49,48 @@ export default class sendNotification extends React.Component {
             )
         })
        .then((response) => {
+        alert('inside sendnotification')
+         var message = "Hi I make event";
+         this.socket.emit('sendList',message)
            return response.json()
 
        })
        .then((responseJson) => {
          
            // return responseJson;
-           if(responseJson){
+//            if(responseJson){
            alert('your list sucessfuly sent !! \n' + "wait for response .....")
-}
-else {
-    alert("Please try again !!!")
-}
+// }
+// else {
+//     alert("Please try again !!!")
+// }
        })
        .catch((error) => {
             // reject(error);
-            alert("Error !!!  Please try again")
+            alert("Error !!!  Please try again   " + error)
        });
      }
-  //   loc() {
-  //   navigator.geolocation.getCurrentPosition(
-  //     (position) => {
-  //       // alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
-  //       this.state.changeLocation({latitude:position.coords.latitude, longitude: position.coords.longitude})
-  //     },
-  //     (error) => this.setState({ error: error.message }),
-  //     { enableHighAccuracy: true, timeout: 200}
-  //   );
-  // }
+    loc() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        // alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+        this.state.changeLocation({latitude:position.coords.latitude, longitude: position.coords.longitude})
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 200}
+    );
+  }
+
+// _onRefresh(){
+//         alert("current Location  detected <> ");
+
 
     render() {
         return (
             <View  KeyboardAvoidingView behavior='padding' style={styles.container}>
 
 <Image style={styles.container}
-            source = {require('../images/login3.jpg')}
+            source = {require('../images/main.jpg')}
             >
 
             <StatusBar
@@ -86,6 +103,7 @@ else {
                 lightTheme
                     onChangeText = {(val) => this.setState({consumerName : val})}
                     style = {styles.input} placeholder = 'Name.....'
+                    value = {this.state.consumerName }
                     noIcon 
                 />
                 <Text>{'\n'}</Text>
@@ -95,8 +113,8 @@ else {
                 lightTheme
                     onChangeText = {(val) => this.setState({Budget : val})}
                     style = {styles.input} placeholder = 'Budget.....'
+                    value = {this.state.Budget }
                     noIcon
-                    secureTextEntry
                 />
                 <Text>{'\n'}</Text>
 
@@ -104,6 +122,7 @@ else {
                 lightTheme
                     onChangeText = {(val) => this.setState({storeInfo : val})}
                     style = {styles.input} placeholder = 'Store Info.....'
+                    value = {this.state.storeInfo }
                     noIcon 
                 />
                 <Text>{'\n'}</Text>
@@ -112,8 +131,10 @@ else {
 <SearchBar 
                 lightTheme
                     onChangeText = {(val) => this.setState({items : val})}
-                    style = {styles.input} placeholder = 'Items.....'
+                    style = {styles.items} placeholder = 'Items.....'
                     noIcon 
+                    value = {this.state.items }
+                    multiline = {true}
                 />
                 <Text>{'\n'}</Text>
                
@@ -123,7 +144,7 @@ else {
   name='md-locate'
   type='ionicon'
   color='#517fa4'
-  onPress = {()=>{
+  onPress = {()=> {
                         this.state.changeFlag('mapview');
                     }}
   style = {styles.location }
@@ -205,6 +226,10 @@ const styles = StyleSheet.create({
     input: {
         width : 300 ,
         height : 40,
+    },
+    items: {
+        width : 300 ,
+        height : 100,
     },
     signup:{
      width: 300,

@@ -14,13 +14,25 @@ import React, { Component } from 'react';
 import SendNotification from './components/sendNotification'
 import Login from './components/login';
 import Signup from './components/signup';
+import About from './components/aboutUs';
 import Mapview from './components/mapView';
-
-
+import SocketIOClient from 'socket.io-client';
+import PushNotification from 'react-native-push-notification'
 export default class App extends Component {
 
   constructor(props) {
     super(props);
+    // PushNotification.localNotification({
+    //             message: "there is new consumer" })
+    //       //   //alert('lest')
+         
+    // this.socket = SocketIOClient('http://192.168.1.4:1128',{jsonp:false});
+    //      this.socket.on('acceptlist',() => {
+    //         //Alert.alert('message arrive')
+    //         PushNotification.localNotification({
+    //             message: "your list accpted" })
+    //       //   //alert('lest')
+    //        })
     //alert(MapView.Marker());
     this.state = {
        flag: 'main',
@@ -86,20 +98,15 @@ changeTab (selectedTab) {
                 <View style={styles.container}>
 
   <Image style={styles.containerImg}
-            source = {require('./images/login.jpg')}
+            source = {require('./images/login3.jpg')}
             >
-
-<View style={styles.profile}>
-            <Image style={styles.img}
-            source = {require('./images/profile.png')}
-            />
-</View>
 
             <StatusBar
             backgroundColor ="#000000"
             />
 
-                    <TouchableHighlight 
+
+               <TouchableHighlight 
                         style = {styles.addButton}
                         onPress = {() => {
                             this.changeFlag('login');
@@ -107,7 +114,7 @@ changeTab (selectedTab) {
                     >
                         <Text>LOGIN</Text>
                     </TouchableHighlight>
-
+  <Text>{'\n'}</Text>
 
 
                     <TouchableHighlight 
@@ -118,6 +125,18 @@ changeTab (selectedTab) {
                     >
                         <Text>SIGN UP</Text>
                     </TouchableHighlight>
+  <Text>{'\n'}</Text>
+                      <TouchableHighlight 
+                        style = {styles.addButton}
+                        onPress = {() => {
+                            this.changeFlag('about');
+                        }}
+                    >
+                        <Text>ABOUT US</Text>
+                    </TouchableHighlight>
+
+
+
                     </Image>
                 </View>
             );
@@ -137,6 +156,13 @@ changeTab (selectedTab) {
                   latitude = {this.state.latitude} 
                   longitude = {this.state.longitude}/>
             );
+        }else if (this.state.flag === 'about') {
+            return (
+                <About 
+                  
+                  changeFlag = {this.changeFlag.bind(this)} 
+                  />
+            );
         }
   }
 }
@@ -152,7 +178,6 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
     width: 1000,
-    // height: height,
   },
   arrow:{
     width: 40,
@@ -164,18 +189,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  profile :{
-  // marginTop:0,
-   
-    alignItems: 'center',
-    justifyContent: 'center',
-    // position: 'absolute',
-     // bottom: 0
-  },
-  img:{
-  width: 200,
-    height: 200,
+  addButton:{
+     width: 300,
+        height : 40,
+        backgroundColor:"#DF5900",
+       alignItems : "center",
+       justifyContent: 'center',
   }
+
 });
 
 

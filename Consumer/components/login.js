@@ -3,9 +3,6 @@ import {StatusBar, Image,View,StyleSheet,TouchableHighlight,Text,TextInput} from
 import SendNotification from './sendNotification'
 import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
 import {Header,Container, Button } from 'native-base';
-// import TabNavigator from 'react-native-tab-navigator';
-//SideBar
-// import {TabNavigator} from "react-navigator";
 
 export default class login extends React.Component {
     constructor(props) {
@@ -25,7 +22,7 @@ export default class login extends React.Component {
   
 
     onClickButton(){
-        fetch('http:192.168.2.20:1128/consumerLogin', {//192.168.1.7
+        fetch('http:192.168.2.9:8080/consumerLogin', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -41,7 +38,9 @@ export default class login extends React.Component {
        })
        .then((responseJson) => {
          
-           // return responseJson;
+           // alert(responseJson);
+
+
            if(responseJson){
            this.state.changeFlag('sendNotification');
 }
@@ -64,7 +63,7 @@ else {
         //         alert("Please Sign Up First");
         //         this.state.changeFlag('signup');
         //     }); 
-
+            // this.state.changeFlag('sendNotification');
         
     }
 
@@ -75,7 +74,7 @@ else {
                 
 
             <Image style={styles.container}
-            source = {require('../images/login3.jpg')}
+            source = {require('../images/main.jpg')}
             >
 
             <StatusBar

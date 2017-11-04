@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Mapo from './mapView';
 import getDirections from 'react-native-google-maps-directions';
+import SocketIOClient from 'socket.io-client';
 
 export default class List extends Component {
   constructor(props) {
@@ -21,13 +22,14 @@ export default class List extends Component {
       // getLocation: this.props.getLocation,
       // changeLocation: this.props.changeLocation
     };
+    this.socket = SocketIOClient('http://192.168.2.9:8080', { jsonp: false });
   }
   setModalVisible(modalName, visible) {
     this.setState({ [modalName]: visible });
   }
 
   acceptList(listId) {
-    fetch('http:192.168.1.8:1128/acceptsList', {
+    fetch('https://serverna.herokuapp.com/acceptsList', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -38,7 +40,8 @@ export default class List extends Component {
       })
     })
       .then(res => {
-        alert('list accepted successfully');
+        var message = 'Hi I make event';
+        this.socket.emit('acceptList', message);
       })
       .catch(err => {
         alert(err);
@@ -55,8 +58,8 @@ export default class List extends Component {
       //   longitude: 18.6947617
       // },
       destination: {
-        latitude: this.props.list.location.latitude,
-        longitude: this.props.list.location.longitude
+        latitude: this.state.list.location.latitude,
+        longitude: this.state.list.location.longitude
       },
       params: [
         {
@@ -140,27 +143,6 @@ export default class List extends Component {
                   />
                 </View>
               </View>
-            </View>
-          </Modal>
-          <Modal
-            animationType="slide"
-            transparent={false}
-            visible={this.state.modalGetLocation}
-            onRequestClose={() => {
-              this.setModalVisible(
-                'modalGetLocation',
-                !this.state.modalGetLocation
-              );
-            }}>
-            //{' '}
-            <View>
-              // //{' '}
-              <Mapo
-                getLocation={this.state.getLocation}
-                changeLocation={this.state.changeLocation}
-                listLocation={this.state.list.location}
-              />
-              //{' '}
             </View>
           </Modal>
         </View>
