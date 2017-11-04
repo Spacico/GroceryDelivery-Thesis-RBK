@@ -167,7 +167,6 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
     width: 1000,
-    // height: height,
   },
   arrow:{
     width: 40,
@@ -183,57 +182,9 @@ const styles = StyleSheet.create({
      width: 300,
         height : 40,
         backgroundColor:"#DF5900",
-       //  // color:"#FFFFFF",
        alignItems : "center",
        justifyContent: 'center',
-       // fontWeight : "700"
   }
-  // profile :{
-  // // marginTop:0,
-   
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   // position: 'absolute',
-  //    // bottom: 0
-  // },
-  // img:{
-  //   // backgroundColor: '#F7B50C',
-  // width: 100,
-  //   height: 150,
-  //   position: 'absolute',
-  //   top: 252,
-  //   left: 314,
-  // },
-  // sign:{
-  //   width: 50,
-  //   height: 50,
-  //   top: 60,
-  //   left: -10,
-
-  // },
-  // log:{
-  //   // backgroundColor: '#F7B50C',
-  //   width: 50,
-  //   height: 50,
-  //   // position: 'absolute',
-  //   // top: -180,
-  //   // left: 150,
-  // },
-  // about:{
-  //   width: 50,
-  //   height: 50,
-  //   // top: -350,
-  //   // left: 5,
-  // },
-  // location:{
-  //    width: 50,
-  //   height: 50,
-  //   // top: -295,
-  //   // left: 5,
-  // },
-  // touch:{
-  //   flex:1
-  // }
 
 });
 

@@ -6,99 +6,82 @@ import {
     Image,
     TouchableHighlight,
     TouchableOpacity,
-    AppRegistry
+    AppRegistry,Alert
 } from 'react-native';
-// import { SideMenu, List, ListItem } from 'react-native-elements'
+
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Getlists from './Components/getlists';
-// import Profile from './Components/myProfile';
-
+import PushNotification from 'react-native-push-notification'
+import SocketIOClient from 'socket.io-client';
 export default class App extends Component {
     constructor(props) {
+
         super(props);
 
         this.state = {
             flag: 'main',
-            isOpen: false
-            // latitude: 0.0,
-            // longitude: 0.0,
-            // error: null
+            lists:[]
         };
-        this.toggleSideMenu = this.toggleSideMenu.bind(this)
-    }
+        this.socket = SocketIOClient('http://192.168.1.4:1128',{jsonp:false});
+         this.socket.on('sendlist',() => {
+            //Alert.alert('message arrive')
+            PushNotification.localNotification({
+                message: "there is new consumer" })
+          //   //alert('lest')
+           })
+        //alert('xx')
+        
+  //var oldMessages = this.state.messages;
+  // React will automatically rerender the component when a new message is added.
+  //this.setState({ messages: oldMessages.concat(message) });
 
-    onSideMenuChange (isOpen: boolean) {
-      this.setState({
-        isOpen: isOpen
-      })
+        //alert(this.socket)
     }
-    toggleSideMenu () {
-      this.setState({
-        isOpen: !this.state.isOpen
-      })
-    }
-
     changeFlag(sth) {
         this.setState({ flag: sth });
     }
-    //
-    // changeLocation(obj){
-    //     this.setState({
-    //         latitude: obj.latitude,
-    //         longitude: obj.longitude
-    //     })
-    // }
-    // getLocation () {
-    //   return {latitude: this.state.latitude, longitude: this.state.longitude}
-    // }
-    // componentDidMount() {
-    //     navigator.geolocation.getCurrentPosition(
-    //       (position) => {
-    //         alert(position.coords.latitude)
-    //         this.setState({
-    //           latitude: position.coords.latitude,
-    //           longitude: position.coords.longitude,
-    //           error: null,
-    //         });
-    //       },
-    //       (error) => this.setState({ error: error.message }),
-    //       { enableHighAccuracy: true, timeout: 200}
-    //     );
-    //     alert (this.state.latitude)
-    //   }
+    componentDidMount() {
+       
+        //alert(this.socket.on)
+        
+    
+                
+    //     // //alert('inside the mount')
+    //     // setInterval(function(){ fetch('http:192.168.1.4:5000/checkAvailableLists')
+    //     //     .then(response => response.json())
+    //     //     .then(data => {
+    //     //         // if(this.state.lists.length>data.length)
+    //     //         // length=this.state.lists.length;
+    //     //         // else
+    //     //         //     length=data.length;
+    //     //         // for(var i=0;i<length;i++){
+    //     //         //     if(this.state.lists.indexOf(data[i])===-1){
+    //     //         //         newData.push(data[i]);
+    //     //         //     }
+    //     //         // }
+    //     //         if(data.length != this.state.lists.length){
+    //     //             PushNotification.localNotification({
+
+    //     //             message: "there is nwe consumer" })
+    //     //         }
+    //     //         this.setState({ lists: data });
+
+    //     //     })
+    //     //     .catch(err => {
+    //     //         throw err;
+    //     //     }); }, 3000);
+        
+
+            };
+    
+    
     render() {
-      // // SideMenu
-      // const MenuComponent = (
-      //   <View style={{flex: 1, backgroundColor: '#ededed', paddingTop: 50}}>
-      //     <List containerStyle={{marginBottom: 20}}>
-      //     {
-      //       list.map((l, i) => (
-      //         <ListItem
-      //           roundAvatar
-      //           onPress={() => console.log('Pressed')}
-      //           avatar={l.avatar_url}
-      //           key={i}
-      //           title={l.name}
-      //           subtitle={l.subtitle}
-      //         />
-      //       ))
-      //     }
-      //     </List>
-      //   </View>
-      // )
- // <SideMenu
-              //   isOpen={this.state.isOpen}
-              //   onChange={this.onSideMenuChange.bind(this)}
-              //   menu={MenuComponent}>
-              //   <App toggleSideMenu={this.toggleSideMenu.bind(this)} />
-              // </SideMenu>
-                              // <Profile />
 
         if (this.state.flag === 'main') {
             return (
                 <View style={styles.container}>
-
+                    <View>
                         <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={() => {
@@ -117,18 +100,18 @@ export default class App extends Component {
                         </TouchableOpacity>
                         <View />
                     </View>
+                </View>
             );
         } else if (this.state.flag === 'login') {
             return <Login changeFlag={this.changeFlag.bind(this)} />;
-            
         } else if (this.state.flag === 'signup') {
             return <Signup changeFlag={this.changeFlag.bind(this)} />;
         } else if (this.state.flag === 'getLists') {
             return <Getlists changeFlag={this.changeFlag.bind(this)} />;
-              // getLocation={this.getLocation.bind(this)} changeLocation={this.changeLocation.bind(this)}
         }
     }
 }
+
 AppRegistry.registerComponent('App', () => App);
 const styles = StyleSheet.create({
     container: {
