@@ -149,7 +149,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-base:10.0.1'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile project(':react-native-vector-icons') // Check if not nessarry
-     compile project(':react-native-push-notification')
+    compile project(':react-native-push-notification')
     compile ('com.google.android.gms:play-services-gcm:10.0.1') {
         force = true;
     }
