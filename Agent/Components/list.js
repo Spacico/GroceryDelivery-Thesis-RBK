@@ -8,7 +8,7 @@ import {
   AppRegistry,
   Button
 } from 'react-native';
-import Mapo from './mapView';
+//import Mapo from './mapView';
 import getDirections from 'react-native-google-maps-directions';
 import SocketIOClient from 'socket.io-client';
 
