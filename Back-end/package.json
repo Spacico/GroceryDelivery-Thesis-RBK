@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -12,17 +12,15 @@
     "bcrypt": "^1.0.3",
     "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.2",
-<<<<<<< HEAD:Back-end/package.json
     "express-session": "^1.15.6",
     "mongoose": "^4.12.4",
     "socket.io": "^2.0.4"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.9.0",
-    "eslint-plugin-react": "^7.4.0"
-=======
+    "eslint-plugin-react": "^7.4.0",
     "nodemon": "^1.12.1",
     "socket.io": "^2.0.4"
->>>>>>> a12e2d41bdfd2b77e6a99319b3bda0992ebd8677:package.json
   }
 }

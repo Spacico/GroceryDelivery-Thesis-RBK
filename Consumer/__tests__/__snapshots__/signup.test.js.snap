@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`signup  Testing contains Image 1`] = `<Image />`;
+
+exports[`signup  Testing contains StatusBar 1`] = `null`;
+
+exports[`signup  Testing contains View 1`] = `<View />`;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Menu, Modal, StyleSheet, TouchableHighlight, View, Text, AppRegistry, Button } from 'react-native';
+import {Menu, Modal, StyleSheet, TouchableHighlight,Navigator, View, Text, AppRegistry, Button } from 'react-native';
 const SideMenu = require('react-native-side-menu');
 
 export default class Profile extends Component {
@@ -20,7 +20,7 @@ export default class Profile extends Component {
         });
     }
 
-    render()
+    render(){
     const menu = <Menu navigator={navigator}/>;
         return (
           <SideMenu menu={menu}>
