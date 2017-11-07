@@ -9,6 +9,9 @@ import {
 } from 'react-native';
 
 export default class Signup extends Component {
+  static navigationOptions = {
+    title: 'Sign Up'
+  };
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +26,7 @@ export default class Signup extends Component {
         };
     }
     onClickSignup() {
-        fetch('http://192.168.2.9:8080/agentSignup', {
+        fetch('https://serverna.herokuapp.com/agentSignup', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -42,7 +45,7 @@ export default class Signup extends Component {
 
     render() {
         return (
-            <View style={styles.content}>
+            <View KeyboardAvoidingView style={styles.content}>
                 <View style={styles.inputContainer}>
                     <TextInput
                         onChangeText={val => {
