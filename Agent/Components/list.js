@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
   list :{
     marginTop:10,
-    marginLeft:30,
+    marginLeft:10,
     flex: 1,
     backgroundColor : '#6668d0',
     width:300,
@@ -190,12 +190,14 @@ const styles = StyleSheet.create({
     margin: 5
   },
   modal:{
-    marginLeft:8,
-    width:400,
+    marginLeft:10,
+    width:350,
     height:200,
     marginTop:150,
     borderRadius:10,
     padding: 5,
+    // justifyContent: 'center',
+    // alignItems: 'center',
     // borderWidth:2,
     backgroundColor:'#7986cb',
   },
@@ -239,7 +241,7 @@ const styles = StyleSheet.create({
     borderRadius:10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft:50
+    marginLeft:40
   },
     cancel:{
       backgroundColor:"red",
@@ -249,7 +251,7 @@ const styles = StyleSheet.create({
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:230
+      marginLeft:220
     },
     Accept:{
       backgroundColor:"green",
@@ -259,7 +261,7 @@ const styles = StyleSheet.create({
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:50
+      marginLeft:40
       }
 });
 

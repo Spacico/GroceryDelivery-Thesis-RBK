@@ -25,12 +25,12 @@ import Signup from './Components/Signup';
 
 const NavigationApp = StackNavigator({
   WelcomePage: { screen: WelcomePage },
+  Signup: { screen: Signup },
   Home: { screen: Home },
   CurrentList: { screen: CurrentList },
   AvailableLists: { screen: AvailableLists },
   History: { screen: History },
-  Login: { screen: Login },
-  Signup: { screen: Signup }
+  Login: { screen: Login }
 });
 
 export default class App extends Component {

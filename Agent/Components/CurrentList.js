@@ -8,7 +8,8 @@ import {
   Image,
   TouchableHighlight,
   TouchableOpacity,
-  AppRegistry
+  AppRegistry,
+  Dimensions
 } from 'react-native';
 import getDirections from 'react-native-google-maps-directions';
 export default class CurrentList extends Component {
@@ -116,57 +117,57 @@ export default class CurrentList extends Component {
     return <View style={styles.container}>{this.renderCurrentList()}</View>;
   }
 }
+const {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   backgroundColor:'#c5cae9',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   content: {
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor:'#c5cae9',
+    backgroundColor:'#c5cae9'
   },
   val:{
       marginTop:25,
     color:'#26418f',
     fontSize:20,
-    fontWeight:'bold',
-    marginLeft:10
-
+    fontWeight:'bold'
   },
   key:{
     marginTop:25,
     color:'white',
     fontSize:25,
-    fontWeight:'bold',
+    fontWeight:'bold'
   },
   modal:{
-    marginLeft:8,
-    width:400,
-    height:250,
-    marginTop:150,
+    // marginLeft:8,
+    width:width * 0.9,
+    height:height * 0.32,
+    marginTop:30,
+    padding: 5,
     borderRadius:10,
     borderWidth:2,
-    backgroundColor:'#6668d0',
+    backgroundColor:'#6668d0'
   },
   list :{
-    marginTop:10,
-    marginLeft:80,
+    marginTop:15,
+    // marginLeft:80,
     backgroundColor : '#6668d0',
-    width:250,
-    height:50,
+    width:width * 0.9,
+    height:height * 0.1,
     borderRadius:10,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   text:{
     marginTop:20,
     color:'white',
     fontSize:20,
     fontWeight:'bold',
-    marginBottom:20,
-  },
+    marginBottom:20
+  }
 });
