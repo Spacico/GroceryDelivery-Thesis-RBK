@@ -9,7 +9,6 @@ import {
   ScrollView,
   Button
 } from 'react-native';
-
 //import List component from it's file
 import List from './list';
 //export class Getlistis
