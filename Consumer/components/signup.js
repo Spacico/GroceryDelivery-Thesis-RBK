@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
   input: {
     width: 300,
     height: 45,
+    borderRadius: 10,
     backgroundColor: '#f5f5f5'
   },
   logoContainer: {

@@ -32,7 +32,18 @@ import SocketIOClient from 'socket.io-client';
 import PushNotification from 'react-native-push-notification';
 export default class sendNotification extends React.Component {
   static navigationOptions = {
-    title: 'Create a list'
+    title: 'Create a list',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
+    }
   };
   constructor(props) {
     super(props);
@@ -125,73 +136,67 @@ export default class sendNotification extends React.Component {
     const { navigate, state } = this.props.navigation;
     return (
       <View KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <Image style={styles.container} source={require('../images/main.jpg')}>
-          <StatusBar backgroundColor="#66023c" />
+        <StatusBar backgroundColor="#336e3e" />
 
-          <TouchableHighlight
-            style={styles.sendlist}
-            icon={{ name: 'cached' }}
-            onPress={() => this.onClickButton(navigate)}>
-            <Text style={styles.text}> Send List </Text>
-          </TouchableHighlight>
-          <Text
-            style={{
-              marginTop: 100,
-              textAlign: 'right',
-              fontWeight: 'bold',
-              fontSize: 20
-            }}>
-            {' '}
-          </Text>
+        <Text
+          style={{
+            marginTop: 100,
+            textAlign: 'right',
+            fontWeight: 'bold',
+            fontSize: 20
+          }}>
+          {' '}
+        </Text>
 
-          <SearchBar
-            lightTheme
-            onChangeText={val => this.setState({ Budget: val })}
-            style={styles.input}
-            placeholder="Budget....."
-            value={this.state.Budget}
-            noIcon
-          />
-          <Text>{'\n'}</Text>
+        <SearchBar
+          lightTheme
+          onChangeText={val => this.setState({ Budget: val })}
+          style={styles.items}
+          placeholder="Budget....."
+          value={this.state.Budget}
+          noIcon
+        />
+        <Text>{'\n'}</Text>
 
-          <SearchBar
-            lightTheme
-            onChangeText={val => this.setState({ storeInfo: val })}
-            style={styles.input}
-            placeholder="Store Info....."
-            value={this.state.storeInfo}
-            noIcon
-          />
-          <Text>{'\n'}</Text>
+        <SearchBar
+          lightTheme
+          onChangeText={val => this.setState({ storeInfo: val })}
+          style={styles.items}
+          placeholder="Store Info....."
+          value={this.state.storeInfo}
+          noIcon
+        />
+        <Text>{'\n'}</Text>
 
-          <SearchBar
-            lightTheme
-            onChangeText={val => this.setState({ items: val })}
-            style={styles.items}
-            placeholder="Items....."
-            noIcon
-            value={this.state.items}
-            multiline={true}
-          />
-          <Text>{'\n'}</Text>
-          <TouchableHighlight onPress={() => this.setState({ mapModal: true })}>
-            <Text>Current Location</Text>
-          </TouchableHighlight>
-          <Text>{'\n'}</Text>
+        <SearchBar
+          lightTheme
+          onChangeText={val => this.setState({ items: val })}
+          style={styles.items}
+          placeholder="Items....."
+          noIcon
+          value={this.state.items}
+          multiline={true}
+        />
+        <Text>{'\n'}</Text>
 
-          <Icon
-            reverse
-            name="md-locate"
-            type="ionicon"
-            color="#777"
-            onPress={() => {
-              this.setState({ mapModal: true });
-            }}
-            style={styles.location}
-          />
+        <Icon
+          reverse
+          name="md-locate"
+          type="ionicon"
+          color="#777"
+          onPress={() => {
+            this.setState({ mapModal: true });
+          }}
+          style={styles.location}
+        />
 
-          <Text>{'\n'}</Text>
-        </Image>
+        <Text>{'\n'}</Text>
+        <TouchableHighlight
+          style={styles.sendlist}
+          icon={{ name: 'cached' }}
+          onPress={() => this.onClickButton(navigate)}>
+          <Text style={styles.text}> Send List </Text>
+        </TouchableHighlight>
         <View>
           <Modal
             animationType="slide"
@@ -236,16 +241,25 @@ export default class sendNotification extends React.Component {
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
-    height: 600,
-    width: 400,
-    justifyContent: 'flex-start',
+    // ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    // height: 600,
+    // width: 400,
+    // justifyContent: 'flex-start',
     alignItems: 'center'
   },
   map: {
     flex: 1,
     width: width,
     height: height
+  },
+  touchable: {
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   addButton: {
     backgroundColor: '#ccc',
@@ -260,7 +274,9 @@ const styles = StyleSheet.create({
   },
   items: {
     width: 300,
-    height: 100
+    height: 45,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10
   },
   signup: {
     width: 300,
@@ -287,15 +303,14 @@ const styles = StyleSheet.create({
   },
   sendlist: {
     width: 300,
-    height: 40,
-    backgroundColor: '#66023c',
-    //  // color:"#FFFFFF",
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
     alignItems: 'center',
     justifyContent: 'center'
-    // fontWeight : "700"
   },
   location: {
-    backgroundColor: '#CD7584',
+    backgroundColor: '#519657',
     width: 50,
     height: 50,
     //  // color:"#FFFFFF",

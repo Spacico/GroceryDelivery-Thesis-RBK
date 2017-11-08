@@ -45,12 +45,13 @@ import MapView from './components/mapView';
 import WelcomePage from './components/welcomePage';
 
 export const NavigationApp = StackNavigator({
-  Signup: { screen: Signup },
-  WelcomePage: { screen: WelcomePage },
   Home: { screen: Home },
-  Login: { screen: Login },
   SendNotification: { screen: SendNotification },
-  MapView: { screen: MapView },
+  Signup: { screen: Signup },
+  Login: { screen: Login },
+
+  WelcomePage: { screen: WelcomePage },
+
   History: { screen: History },
   CurrentList: { screen: CurrentList }
 });
@@ -64,7 +65,7 @@ export default class App extends Component {
   }
 
   render() {
-    return <NavigationApp style={{ backgroundColor: '#81c784' }} />;
+    return <NavigationApp />;
   }
 }
 
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     height: 1000,
     width: 400,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   map: {

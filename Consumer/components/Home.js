@@ -23,7 +23,18 @@ import { Header, Container, Button } from 'native-base';
 
 export default class Home extends React.Component {
   static navigationOptions = {
-    title: 'Home'
+    title: 'Home',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
+    }
   };
   constructor(props) {
     super(props);
@@ -68,31 +79,32 @@ export default class Home extends React.Component {
 
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor="#336e3e" />
         <TouchableHighlight
-          style={styles.addButton}
+          style={styles.touchable}
           onPress={() => {
             navigate('SendNotification', {
               latitude: this.state.latitude,
               longitude: this.state.longitude
             });
           }}>
-          <Text>Create a list</Text>
+          <Text style={styles.buttonText}>Create a list</Text>
         </TouchableHighlight>
         <Text>{'\n'}</Text>
         <TouchableHighlight
-          style={styles.addButton}
+          style={styles.touchable}
           onPress={() => {
             navigate('CurrentList');
           }}>
-          <Text>Current List</Text>
+          <Text style={styles.buttonText}>Current List</Text>
         </TouchableHighlight>
         <Text>{'\n'}</Text>
         <TouchableHighlight
-          style={styles.addButton}
+          style={styles.touchable}
           onPress={() => {
             navigate('History');
           }}>
-          <Text>History</Text>
+          <Text style={styles.buttonText}>History</Text>
         </TouchableHighlight>
       </View>
     );
@@ -102,12 +114,17 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: '#fafafa',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  content: {
-    alignItems: 'center'
+  touchable: {
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   logo: {
     color: 'white',
@@ -125,10 +142,9 @@ const styles = StyleSheet.create({
     margin: 5
   },
   buttonText: {
-    fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
-    alignItems: 'center'
+    fontSize: 22,
+    color: '#222'
   },
   inputContainer: {
     margin: 20,
