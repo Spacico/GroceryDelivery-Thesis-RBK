@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mapView Testing contains View 1`] = `
+<AIRMapMarker
+  image={undefined}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "position": "absolute",
+      },
+      undefined,
+    ]
+  }
+/>
+`;

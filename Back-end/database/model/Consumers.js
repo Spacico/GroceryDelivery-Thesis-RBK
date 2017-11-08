@@ -3,10 +3,12 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var consumerSchema = mongoose.Schema({
-  address:  String,
-  consumerName: {type: String, index: {unique: true} },
-  password: String,
-  phone:String
+    address: String,
+    consumerName: { type: String, index: { unique: true } },
+    password: String,
+    phone: String,
+    history:{type:Array },
+    currentList:String
 });
 
 var Consumers = mongoose.model('Consumers', consumerSchema);

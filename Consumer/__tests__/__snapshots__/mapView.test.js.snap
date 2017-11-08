@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapView  Testing contains View 1`] = `<View />`;
+
+exports[`signup  Testing contains View 1`] = `<View />`;
