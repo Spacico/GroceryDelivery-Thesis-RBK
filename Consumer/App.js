@@ -45,10 +45,10 @@ import MapView from './components/mapView';
 import WelcomePage from './components/welcomePage';
 
 export const NavigationApp = StackNavigator({
+  Signup: { screen: Signup },
   WelcomePage: { screen: WelcomePage },
   Home: { screen: Home },
   Login: { screen: Login },
-  Signup: { screen: Signup },
   SendNotification: { screen: SendNotification },
   MapView: { screen: MapView },
   History: { screen: History },
@@ -64,7 +64,7 @@ export default class App extends Component {
   }
 
   render() {
-    return <NavigationApp />;
+    return <NavigationApp style={{ backgroundColor: '#81c784' }} />;
   }
 }
 

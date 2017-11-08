@@ -27,7 +27,18 @@ import { Header, Container, Button } from 'native-base';
 
 export default class signup extends React.Component {
   static navigationOptions = {
-    title: 'Sign Up'
+    title: 'Sign Up',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
+    }
   };
   constructor(props) {
     super(props);
@@ -35,8 +46,9 @@ export default class signup extends React.Component {
     this.state = {
       changeFlag: props.changeFlag,
       userName: '',
-      email: '',
-      password: ''
+      address: '',
+      password: '',
+      phone: ''
     };
     // this.toggleSideMenu = this.toggleSideMenu.bind(this)
   }
@@ -89,43 +101,58 @@ export default class signup extends React.Component {
   render() {
     return (
       <View KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <Image style={styles.container} source={require('../images/main.jpg')}>
-          <StatusBar backgroundColor="#DF5900" />
+        <StatusBar backgroundColor="#336e3e" />
 
-          <Text
-            style={{
-              marginTop: 80,
-              textAlign: 'right',
-              fontWeight: 'bold',
-              fontSize: 20
-            }}>
-            {' '}
-            User Name{' '}
-          </Text>
+        <Text
+          style={{
+            marginTop: 80,
+            textAlign: 'right',
+            fontWeight: 'bold',
+            fontSize: 20
+          }}>
+          Username
+        </Text>
+        <View style={styles.shadow}>
           <SearchBar
             lightTheme
             onChangeText={val => this.setState({ userName: val })}
             style={styles.input}
-            placeholder="user name .... "
+            placeholder="username.... "
             noIcon
             required
           />
+        </View>
+        <Text>{'\n'}</Text>
 
-          <Text>{'\n'}</Text>
-
-          <Text style={styles.label}> Email </Text>
+        <Text style={styles.label}> Address </Text>
+        <View style={styles.shadow}>
           <SearchBar
             lightTheme
-            onChangeText={val => this.setState({ email: val })}
+            onChangeText={val => this.setState({ address: val })}
             style={styles.input}
-            placeholder="Email....."
+            placeholder="address....."
             noIcon
             required
           />
-          <Text>{'\n'}</Text>
+        </View>
+        <Text>{'\n'}</Text>
 
-          <Text style={styles.label}> Password </Text>
+        <Text style={styles.label}> Phone </Text>
+        <View style={styles.shadow}>
+          <SearchBar
+            lightTheme
+            onChangeText={val => this.setState({ phone: val })}
+            style={styles.input}
+            placeholder="phone....."
+            noIcon
+            required
+            secureTextEntry
+          />
+        </View>
+        <Text>{'\n'}</Text>
 
+        <Text style={styles.label}> Password </Text>
+        <View style={styles.shadow}>
           <SearchBar
             lightTheme
             onChangeText={val => this.setState({ password: val })}
@@ -135,87 +162,15 @@ export default class signup extends React.Component {
             required
             secureTextEntry
           />
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-
-          <Text>{'\n'}</Text>
-
-          <TouchableHighlight
-            style={styles.signup}
-            icon={{ name: 'cached' }}
-            onPress={this.onClickButton.bind(this)}>
-            <Text style={styles.text}> Sign Up </Text>
-          </TouchableHighlight>
-
-          <Tabs style={styles.tabs}>
-            <Tab
-              titleStyle={{ fontWeight: 'bold', fontSize: 10 }}
-              renderIcon={() => (
-                <Icon
-                  containerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                  color={'#000000'}
-                  name="home"
-                  size={40}
-                />
-              )}
-              renderSelectedIcon={() => (
-                <Icon color={'#000000'} name="home" size={50} />
-              )}
-              onPress={() => {
-                this.state.changeFlag('main');
-              }}
-            />
-            <Tab
-              titleStyle={{ fontWeight: 'bold', fontSize: 10 }}
-              // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
-              // selected={selectedTab === 'profile'}
-              // title={selectedTab === 'profile' ? 'PROFILE' : null}
-              renderIcon={() => (
-                <Icon
-                  containerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                  color={'#000000'}
-                  name="person"
-                  size={40}
-                />
-              )}
-              renderSelectedIcon={() => (
-                <Icon color={'#000000'} name="person" size={50} />
-              )}
-              onPress={() => {
-                this.state.changeFlag('login');
-              }}
-            />
-            <Tab
-              titleStyle={{ fontWeight: 'bold', fontSize: 10 }}
-              // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
-              // selected={selectedTab === 'profile'}
-              // title={selectedTab === 'profile' ? 'PROFILE' : null}
-              renderIcon={() => (
-                <Icon
-                  containerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                  color={'#000000'}
-                  name="vpn-key"
-                  size={40}
-                />
-              )}
-              renderSelectedIcon={() => (
-                <Icon color={'#000000'} name="vpn-key" size={50} />
-              )}
-              onPress={() => {
-                this.state.changeFlag('signup');
-              }}
-            />
-          </Tabs>
-        </Image>
+        </View>
+        <Text>{'\n'}</Text>
+        <Text>{'\n'}</Text>
+        <TouchableHighlight
+          style={styles.addButton}
+          icon={{ name: 'cached' }}
+          onPress={this.onClickButton.bind(this)}>
+          <Text style={styles.btnText}> Sign Up </Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -224,23 +179,32 @@ export default class signup extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7B50C',
+    alignItems: 'center'
+    // justifyContent: 'center'
+  },
+  shadow: {
+    shadowColor: '#111',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 10
+  },
+  addButton: {
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
     alignItems: 'center',
     justifyContent: 'center'
   },
-  addButton: {
-    backgroundColor: '#ccc',
-    width: 90,
-    height: 40,
-    justifyContent: 'center',
-    elevation: 8
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: 22,
+    color: '#222'
   },
   input: {
     width: 300,
-    height: 40
-    // marginBottom : 20,
-    // color : "#FFF",
-    // paddingHorizontal : 10
+    height: 45,
+    backgroundColor: '#f5f5f5'
   },
   logoContainer: {
     alignItems: 'center',

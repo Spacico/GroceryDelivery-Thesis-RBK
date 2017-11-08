@@ -23,7 +23,18 @@ import { Header, Container, Button } from 'native-base';
 
 export default class WelcomePage extends React.Component {
   static navigationOptions = {
-    title: 'Welcome'
+    title: 'Welcome',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
+    }
   };
 
   render() {
@@ -31,12 +42,13 @@ export default class WelcomePage extends React.Component {
 
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor="#336e3e" />
         <TouchableHighlight
           style={styles.addButton}
           onPress={() => {
             navigate('Login');
           }}>
-          <Text>LOGIN</Text>
+          <Text style={styles.btnText}>LOGIN</Text>
         </TouchableHighlight>
         <Text>{'\n'}</Text>
         <TouchableHighlight
@@ -44,7 +56,7 @@ export default class WelcomePage extends React.Component {
           onPress={() => {
             navigate('Signup');
           }}>
-          <Text>Sign Up</Text>
+          <Text style={styles.btnText}>Sign Up</Text>
         </TouchableHighlight>
         <Text>{'\n'}</Text>
       </View>
@@ -59,9 +71,15 @@ const styles = StyleSheet.create({
   },
   addButton: {
     width: 300,
-    height: 40,
-    backgroundColor: '#DF5900',
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: 22,
+    color: '#222'
   }
 });
