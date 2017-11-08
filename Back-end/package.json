@@ -1,0 +1,32 @@
+{
+  "name": "serverna",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmadHaririrbk/serverna.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmadHaririrbk/serverna/issues"
+  },
+  "homepage": "https://github.com/AhmadHaririrbk/serverna#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bcrypt-nodejs": "0.0.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.12.6",
+    "socket.io": "^2.0.4"
+  },
+  "engines": {
+    "node": "^8.7.0",
+    "npm": "^5.4.2"
+  }
+}

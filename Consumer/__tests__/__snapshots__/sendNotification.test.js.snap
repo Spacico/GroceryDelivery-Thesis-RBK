@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sendNotification test renders with out crashing 1`] = `<sendNotification />`;
