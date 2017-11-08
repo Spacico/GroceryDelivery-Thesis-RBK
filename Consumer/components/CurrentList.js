@@ -19,7 +19,18 @@ export default class CurrentList extends Component {
     };
   }
   static navigationOptions = {
-    title: 'Current List'
+    title: 'Current List',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
+    }
   };
 
   finishList(_id, navigate) {
@@ -70,30 +81,40 @@ export default class CurrentList extends Component {
       return (
         <View style={{ marginTop: 22 }}>
           <View style={styles.listInfoContainer}>
-            <Text style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-              <Text style={{ fontSize: 25, color: 'black' }}>Items:</Text>
-              {this.state.currentList.items}
+            <Text
+              style={{ fontWeight: 'bold', color: '#003300', fontSize: 20 }}>
+              <Text style={{ fontSize: 21, color: '#555' }}>Items:</Text>
+              {'  ' + this.state.currentList.items + '\n'}
             </Text>
 
-            <Text style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-              <Text style={{ fontSize: 20, color: 'black' }}>Agent name:</Text>
-              {this.state.currentList.agentName}
+            <Text
+              style={{ fontWeight: 'bold', color: '#003300', fontSize: 20 }}>
+              <Text style={{ fontSize: 20, color: '#555' }}>Agent name:</Text>
+              {'  ' + this.state.currentList.agentName + '\n'}
             </Text>
 
-            <Text style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-              <Text style={{ fontSize: 20, color: 'black' }}>
+            <Text
+              style={{ fontWeight: 'bold', color: '#003300', fontSize: 20 }}>
+              <Text style={{ fontSize: 20, color: '#555' }}>
                 Store information:
               </Text>
-              {this.state.currentList.storeInfo}
+              {'  ' + this.state.currentList.storeInfo + '\n'}
+            </Text>
+
+            <Text
+              style={{ fontWeight: 'bold', color: '#003300', fontSize: 20 }}>
+              <Text style={{ fontSize: 20, color: '#555' }}>Budget:</Text>
+              {'  ' + this.state.currentList.budget + '\n'}
             </Text>
           </View>
           <View style={{ padding: 25 }}>
-            <Button
-              title="Done"
+            <TouchableHighlight
+              style={styles.addButton}
               onPress={() => {
                 this.finishList(this.state.currentList._id, navigate);
-              }}
-            />
+              }}>
+              <Text style={styles.btnText}>Done</Text>
+            </TouchableHighlight>
           </View>
         </View>
       );
@@ -116,7 +137,6 @@ export default class CurrentList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#00b686',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -135,9 +155,12 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   listInfoContainer: {
-    backgroundColor: '#B5B5B5',
-    padding: 5,
-    margin: 5
+    backgroundColor: '#81c784',
+    width: 400,
+    height: 200,
+    padding: 10,
+    margin: 2,
+    borderRadius: 10
   },
   buttonText: {
     fontSize: 16,
@@ -174,5 +197,19 @@ const styles = StyleSheet.create({
     margin: 20,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  addButton: {
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 25
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: 22,
+    color: '#222'
   }
 });

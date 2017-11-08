@@ -15,7 +15,18 @@ import List from './list';
 //export class Getlistis
 export default class History extends Component {
   static navigationOptions = {
-    title: 'History Lists'
+    title: 'History Lists',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
+    }
   };
 
   constructor(props) {
@@ -73,7 +84,7 @@ export default class History extends Component {
   renderHistoryLists = () => {
     if (this.state.lists.length) {
       return (
-        <View>
+        <View style={styles.container}>
           {this.state.lists.map((list, index) => (
             <List list={list} key={index} />
           ))}
@@ -81,8 +92,8 @@ export default class History extends Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          <Text style={styles.content}>No history available.</Text>
+        <View style={styles.content}>
+          <Text style={{ fontSize: 18 }}>No history available.</Text>
         </View>
       );
     }
@@ -98,10 +109,13 @@ export default class History extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   content: {
-    alignItems: 'center'
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 250
   },
   logo: {
     color: 'white',

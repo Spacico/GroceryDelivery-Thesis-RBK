@@ -34,12 +34,13 @@ export default class List extends Component {
       <View style={styles.container}>
         <View
           style={{ flexDirection: 'row', height: 80, padding: 20, margin: 5 }}>
-          <Button
-            title={this.props.list.storeInfo}
+          <TouchableHighlight
+            style={styles.addButton}
             onPress={() => {
               this.setModalVisible('modalListInfo', !this.state.modalListInfo);
-            }}
-          />
+            }}>
+            <Text style={styles.btnText}>{this.props.list.storeInfo}</Text>
+          </TouchableHighlight>
         </View>
         <View style={{ marginTop: 22 }}>
           <Modal
@@ -52,25 +53,46 @@ export default class List extends Component {
             <View style={{ marginTop: 22 }}>
               <View style={styles.listInfoContainer}>
                 <Text
-                  style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-                  <Text style={{ fontSize: 25, color: 'black' }}>Items:</Text>
-                  {this.state.list.items}
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#003300',
+                    fontSize: 20
+                  }}>
+                  <Text style={{ fontSize: 21, color: '#555' }}>Items:</Text>
+                  {'  ' + this.state.list.items + '\n'}
                 </Text>
 
                 <Text
-                  style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-                  <Text style={{ fontSize: 20, color: 'black' }}>
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#003300',
+                    fontSize: 20
+                  }}>
+                  <Text style={{ fontSize: 20, color: '#555' }}>
                     Agent name:
                   </Text>
-                  {this.state.list.agentName}
+                  {'  ' + this.state.list.agentName + '\n'}
                 </Text>
 
                 <Text
-                  style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-                  <Text style={{ fontSize: 20, color: 'black' }}>
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#003300',
+                    fontSize: 20
+                  }}>
+                  <Text style={{ fontSize: 20, color: '#555' }}>
                     Store information:
                   </Text>
-                  {this.state.list.storeInfo}
+                  {'  ' + this.state.list.storeInfo + '\n'}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#003300',
+                    fontSize: 20
+                  }}>
+                  <Text style={{ fontSize: 20, color: '#555' }}>Budget:</Text>
+                  {'  ' + this.state.list.budget + '\n'}
                 </Text>
               </View>
             </View>
@@ -84,12 +106,16 @@ export default class List extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   listInfoContainer: {
-    backgroundColor: '#B5B5B5',
-    padding: 5,
-    margin: 5
+    backgroundColor: '#81c784',
+    width: 400,
+    height: 200,
+    padding: 10,
+    margin: 5,
+    borderRadius: 10
   },
   buttonContainer: {
     margin: 20
@@ -98,6 +124,20 @@ const styles = StyleSheet.create({
     margin: 20,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  addButton: {
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 25
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: 22,
+    color: '#222'
   }
 });
 

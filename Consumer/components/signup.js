@@ -44,7 +44,6 @@ export default class signup extends React.Component {
     super(props);
 
     this.state = {
-      changeFlag: props.changeFlag,
       userName: '',
       address: '',
       password: '',
@@ -59,46 +58,46 @@ export default class signup extends React.Component {
   //     menuOpen: !menuOpen
   //   })
   // }
-  onClickButton() {
-    fetch('https://serverna.herokuapp.com/consumerSignup', {
-      //192.168.1.7
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(response => {
-        alert(response);
-        return response.json();
+  onClickButton(navigate) {
+    if (
+      this.state.userName !== '' &&
+      this.state.password !== '' &&
+      this.state.address !== '' &&
+      this.state.phone !== ''
+    ) {
+      fetch('https://serverna.herokuapp.com/consumerSignup', {
+        //192.168.1.7
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
       })
-      .then(responseJson => {
-        alert(responseJson);
-        if (responseJson) {
-          alert(
-            'sucessfuly register !! \n' +
-              'thank you for registering\n  login please'
-          );
-        } else {
-          alert(responseJson.message);
-        }
-      })
-      .catch(error => {
-        alert(error);
-        alert('Error !!!  Please try again');
-      });
-
-    // this.state.changeFlag('main');
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if (responseJson === true) {
+            alert(
+              'sucessfuly register !! \n' +
+                'thank you for registering\n  login please'
+            );
+            navigate('Login');
+          } else {
+            alert(responseJson.message);
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
+    } else {
+      alert('Please make sure that you filled all the fields');
+    }
   }
 
-  // onSideMenuChange (isOpen: boolean) {
-  //   this.setState({
-  //     isOpen: isOpen
-  //   })
-  // }
-
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View KeyboardAvoidingView behavior="padding" style={styles.container}>
         <StatusBar backgroundColor="#336e3e" />
@@ -146,7 +145,6 @@ export default class signup extends React.Component {
             placeholder="phone....."
             noIcon
             required
-            secureTextEntry
           />
         </View>
         <Text>{'\n'}</Text>
@@ -168,7 +166,9 @@ export default class signup extends React.Component {
         <TouchableHighlight
           style={styles.addButton}
           icon={{ name: 'cached' }}
-          onPress={this.onClickButton.bind(this)}>
+          onPress={() => {
+            this.onClickButton(navigate);
+          }}>
           <Text style={styles.btnText}> Sign Up </Text>
         </TouchableHighlight>
       </View>

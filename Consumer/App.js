@@ -45,13 +45,11 @@ import MapView from './components/mapView';
 import WelcomePage from './components/welcomePage';
 
 export const NavigationApp = StackNavigator({
+  WelcomePage: { screen: WelcomePage },
   Home: { screen: Home },
   SendNotification: { screen: SendNotification },
-  Signup: { screen: Signup },
   Login: { screen: Login },
-
-  WelcomePage: { screen: WelcomePage },
-
+  Signup: { screen: Signup },
   History: { screen: History },
   CurrentList: { screen: CurrentList }
 });

@@ -48,31 +48,35 @@ export default class login extends React.Component {
   }
 
   onLogin(navigate) {
-    fetch('https://serverna.herokuapp.com/consumerLogin', {
-      //192.168.1.7
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        consumerName: this.state.consumerName,
-        password: this.state.password
+    if (this.state.consumerName !== '' && this.state.password !== '') {
+      fetch('https://serverna.herokuapp.com/consumerLogin', {
+        //192.168.1.7
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          consumerName: this.state.consumerName,
+          password: this.state.password
+        })
       })
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(responseJson => {
-        if (responseJson === true) {
-          navigate('Home');
-        } else {
-          alert(responseJson.message);
-        }
-      })
-      .catch(error => {
-        alert(error);
-      });
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if (responseJson === true) {
+            navigate('Home');
+          } else {
+            alert(responseJson.message);
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
+    } else {
+      alert('Please make sure that you filled all fields.');
+    }
   }
 
   render() {

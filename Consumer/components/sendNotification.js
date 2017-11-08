@@ -26,8 +26,6 @@ import {
 } from 'react-native-elements';
 import { Header, Container, Button } from 'native-base';
 import MapView from 'react-native-maps';
-// import Login from './components/login'
-// import MapView from 'react-native-maps';
 import SocketIOClient from 'socket.io-client';
 import PushNotification from 'react-native-push-notification';
 export default class sendNotification extends React.Component {
@@ -69,27 +67,35 @@ export default class sendNotification extends React.Component {
   }
 
   onClickButton(navigate) {
-    fetch('https://serverna.herokuapp.com/sendNotification', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(response => {
-        alert('inside sendnotification');
-        var message = 'Hi I make event';
-        this.socket.emit('sendList', message);
-        return response.json();
+    if (
+      this.state.budget !== '' &&
+      this.state.storeInfo !== '' &&
+      this.state.items !== ''
+    ) {
+      fetch('https://serverna.herokuapp.com/sendNotification', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
       })
-      .then(responseJson => {
-        alert('your list sucessfuly sent !! \n' + 'wait for response .....');
-        navigate('Home');
-      })
-      .catch(error => {
-        alert('Error !!!  Please try again   ' + error);
-      });
+        .then(response => {
+          alert('inside sendnotification');
+          var message = 'Hi I make event';
+          this.socket.emit('sendList', message);
+          return response.json();
+        })
+        .then(responseJson => {
+          alert('your list sucessfuly sent !! \n' + 'wait for response .....');
+          navigate('Home');
+        })
+        .catch(error => {
+          alert('Error !!!  Please try again   ' + error);
+        });
+    } else {
+      alert('Please make sure that you filled all fields.');
+    }
   }
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
