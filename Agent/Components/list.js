@@ -7,7 +7,8 @@ import {
   Text,
   AppRegistry,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 //import Mapo from './mapView';
 import getDirections from 'react-native-google-maps-directions';
@@ -132,7 +133,20 @@ export default class List extends Component {
            <Text style={styles.text}>Get Directions</Text>
            </TouchableOpacity>
 
-           <View style={styles.alternativeLayoutButtonContainer}>
+           <View style={{marginTop: 25}}>
+           <TouchableOpacity
+           style={styles.Accept}
+           onPress={() => {
+             this.acceptList(this.state.list._id);
+             this.setModalVisible(
+               'modalListInfo',
+               !this.state.modalListInfo
+             );
+           }}
+           title="Accept"
+           >
+           <Text style={styles.text}>Accept</Text>
+           </TouchableOpacity>
              <TouchableOpacity
              style={styles.cancel}
                onPress={() => {
@@ -146,19 +160,6 @@ export default class List extends Component {
               <Text style={styles.text}>Cancel</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-              style={styles.Accept}
-              onPress={() => {
-                this.acceptList(this.state.list._id);
-                this.setModalVisible(
-                  'modalListInfo',
-                  !this.state.modalListInfo
-                );
-              }}
-              title="Accept"
-              >
-              <Text style={styles.text}>Accept</Text>
-              </TouchableOpacity>
               </View>
          </Modal>
        </View>
@@ -167,6 +168,7 @@ export default class List extends Component {
  }
 }
 
+const {width, height} = Dimensions.get('window')
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -174,12 +176,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   list :{
-    marginTop:10,
-    marginLeft:10,
+    marginTop:50,
+    margin: 20,
     flex: 1,
     backgroundColor : '#6668d0',
-    width:300,
-    height:60,
+    width:width * 0.9,
+    height:height * 0.1,
     borderRadius:10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -190,11 +192,11 @@ const styles = StyleSheet.create({
     margin: 5
   },
   modal:{
-    marginLeft:10,
-    width:350,
-    height:200,
-    marginTop:150,
-    borderRadius:10,
+    margin:20,
+    width: width * 0.9,
+    height: height * 0.3,
+    marginTop:50,
+    borderRadius:15,
     padding: 5,
     // justifyContent: 'center',
     // alignItems: 'center',
@@ -226,42 +228,38 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     marginTop:10,
   },
-  text:{
-    color:'white',
-    fontSize:20,
-    fontWeight:'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   touch:{
     backgroundColor:"#303f9f",
-    width:300,
-    height:60,
-    marginTop:10,
+    width:width * 0.7,
+    height:height * 0.075,
     borderRadius:10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft:40
+    marginLeft: 60,
+    marginRight: 60,
+
   },
     cancel:{
       backgroundColor:"red",
-      width:120,
-      height:60,
-      marginTop:15,
+      width:width * 0.45,
+      height:height * 0.09,
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:220
+      marginLeft:112,
+      marginRight: 112,
+      marginTop: 7
     },
     Accept:{
       backgroundColor:"green",
-      width:120,
-      height:60,
-      top:-60,
+      width:width * 0.45,
+      height:height * 0.09,
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:40
+      marginLeft:112,
+      marginRight: 112,
+      marginTop: 7
       }
 });
 
