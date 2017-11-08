@@ -10,7 +10,18 @@ import {
 
 export default class Signup extends Component {
   static navigationOptions = {
-    title: 'Sign Up'
+    title: 'Sign Up',
+    headerTitleStyle: {
+     fontWeight: 'bold',
+     fontSize: 25,
+     color: 'black'
+   },
+   headerStyle: {
+     backgroundColor: '#6668d0'
+   },
+   headerTintColor: {
+    backgroundColor: 'black'
+   }
   };
     constructor(props) {
         super(props);

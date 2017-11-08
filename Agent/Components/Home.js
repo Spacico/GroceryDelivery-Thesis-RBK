@@ -10,7 +10,17 @@ import Lists from './Lists';
 //export class Getlistis
 export default class Home extends Component {
   static navigationOptions = {
-    title: 'Home'
+    title: 'Home',
+    headerTitleStyle: {
+     fontSize: 25,
+     color: 'white'
+   },
+   headerStyle: {
+     backgroundColor: '#6668d0'
+   },
+   headerTintColor: {
+    backgroundColor: 'black'
+   }
   };
 
   constructor(props) {
@@ -47,45 +57,45 @@ export default class Home extends Component {
 
     return (
       <View style={styles.container}>
-              <View>
+
           <TouchableOpacity
-            style = {styles.available}
+            style = {styles.btn}
             onPress={() => {
               navigate('AvailableLists');
             }}>
             <Text style={styles.buttonText}>Available lists</Text>
           </TouchableOpacity>
-        </View>
 
-        <View>
+
+
           <TouchableOpacity
-          style = {styles.current }
+          style = {styles.btn }
             onPress={() => {
               navigate('CurrentList', { currentList: this.state.currentList });
             }}>
             <Text style={styles.buttonText}>Current list</Text>
           </TouchableOpacity>
-        </View>
 
-        <View>
+
+
           <TouchableOpacity
-            style = {styles.history}
+            style = {styles.btn}
             onPress={() => {
               navigate('History');
             }}>
             <Text style={styles.buttonText}>History lists</Text>
           </TouchableOpacity>
-        </View>
 
-        <View>
+
+
           <TouchableOpacity
-            style = {styles.logout}
+            style = {styles.btn}
             onPress={() => {
               navigate('WelcomePage')
             }}>
-            <Text style={styles.buttonText}>LOGOUT</Text>
+            <Text style={styles.buttonText}>Log out</Text>
           </TouchableOpacity>
-        </View>
+
       </View>
     );
   }
@@ -94,104 +104,25 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'gray',
+  backgroundColor:'#c5cae9',
     // backgroundColor: '#3498db',
     alignItems: 'center',
     justifyContent: 'center',
     // color:'#3498db'
     // backfaceVisibility:true
   },
-  content: {
-    alignItems: 'center'
+  btn:{
+    backgroundColor : '#6668d0',
+    width:300,
+    height:60,
+    borderRadius:10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:20
   },
-  logo: {
-    color: 'white',
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15,
-    marginBottom: 20
-  },
-  listInfoContainer: {
-    backgroundColor: '#B5B5B5',
-    padding: 5,
-    margin: 5
-  },
-
-  buttonText: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    alignItems: 'center'
-
-  },
-  inputContainer: {
-    margin: 20,
-    marginBottom: 0,
-    padding: 20,
-    paddingBottom: 10,
-    alignSelf: 'stretch',
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.2)'
-  },
-  buttonContainer: {
-    alignSelf: 'stretch',
-    margin: 20,
-    padding: 20,
-    backgroundColor: 'blue',
-    borderWidth: 1,
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.6)'
-  },
-  input: {
-    fontSize: 16,
-    height: 40,
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,1)'
-  },
-  alternativeLayoutButtonContainer: {
-    margin: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  current:{
-    top: 120,
-    backgroundColor: '#00B5EC',
-    width: 300,
-       height : 50,
-       borderColor:'#00B5EC',
-       borderWidth:2,
-       borderRadius:15
-  },
-  available:{
-    top: 60,
-    backgroundColor: '#00B5EC',
-    width: 300,
-       height : 50,
-       borderColor:'#00B5EC',
-       borderWidth:2,
-       borderRadius:15
-  },
-  history:{
-    top: 180,
-    backgroundColor: '#00B5EC',
-    width: 300,
-       height : 50,
-       borderColor:'#00B5EC',
-       borderWidth:2,
-       borderRadius:15
-  },
-  logout:{
-    marginTop: 402 ,
-    backgroundColor: '#00B5EC',
-    opacity:0.8,
-    borderWidth:2,
-    width: 410,
-       height : 50,
-       borderColor:'#00B5EC',
-       borderWidth:2,
+  buttonText:{
+      color:'white',
+      fontWeight:'bold',
+      fontSize:20,
   }
 });

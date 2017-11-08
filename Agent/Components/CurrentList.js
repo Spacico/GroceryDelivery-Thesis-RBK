@@ -11,10 +11,19 @@ import {
   AppRegistry
 } from 'react-native';
 import getDirections from 'react-native-google-maps-directions';
-
 export default class CurrentList extends Component {
   static navigationOptions = {
-    title: 'Current List'
+    title: 'Current List',
+    headerTitleStyle: {
+     fontSize: 25,
+     color: 'white'
+   },
+   headerStyle: {
+     backgroundColor: '#6668d0'
+   },
+   headerTintColor: {
+    backgroundColor: 'black'
+   }
   };
 
   constructor(props) {
@@ -62,35 +71,40 @@ export default class CurrentList extends Component {
     const { state } = this.props.navigation;
     if (this.state.currentList !== '') {
       return (
-        <View style={{ marginTop: 22 }}>
-          <View style={styles.listInfoContainer}>
-            <Text style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-              <Text style={{ fontSize: 25, color: 'black' }}>Items:</Text>
+        <View style={{flex:1, marginTop: 22 }}>
+          <View style={styles.modal}>
+            <Text style={styles.val}>
+              <Text style={styles.key}>Items:  </Text>
               {this.state.currentList.items}
             </Text>
 
-            <Text style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-              <Text style={{ fontSize: 20, color: 'black' }}>
-                Consumer name:
-              </Text>
+            <Text style={styles.val}>
+              <Text style={styles.key}>
+                Consumer name:  </Text>
               {this.state.currentList.consumerName}
             </Text>
 
-            <Text style={{ fontWeight: 'bold', color: 'green', fontSize: 15 }}>
-              <Text style={{ fontSize: 20, color: 'black' }}>
-                Store information:
-              </Text>
+            <Text style={styles.val}>
+              <Text style={styles.key}>
+                Store information: </Text>
+
               {this.state.currentList.storeInfo}
             </Text>
-
-            <Button onPress={this.handleGetDirections} title="Get Directions" />
           </View>
+          <TouchableOpacity
+          style={styles.list}
+          onPress={this.handleGetDirections} title="Get Directions" >
+          <Text style={styles.text}>
+          Get Direction
+        </Text>
+          </TouchableOpacity>
         </View>
       );
     } else {
       return (
         <View style={styles.content}>
-          <Text style={{ fontSize: 18 }}>
+          <Text style={{ fontSize: 20,fontWeight:'bold', justifyContent: 'center',
+          alignItems: 'center',color:'black'}}>
             No current list served right now.
           </Text>
         </View>
@@ -106,61 +120,53 @@ export default class CurrentList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#999'
+  backgroundColor:'#c5cae9',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   content: {
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    backgroundColor:'#c5cae9',
   },
-  logo: {
-    color: 'white',
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15,
-    marginBottom: 20
+  val:{
+      marginTop:25,
+    color:'#26418f',
+    fontSize:20,
+    fontWeight:'bold',
+    marginLeft:10
+
   },
-  listInfoContainer: {
-    backgroundColor: '#B5B5B5',
-    padding: 5,
-    margin: 5
+  key:{
+    marginTop:25,
+    color:'white',
+    fontSize:25,
+    fontWeight:'bold',
   },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    alignItems: 'center'
+  modal:{
+    marginLeft:8,
+    width:400,
+    height:250,
+    marginTop:150,
+    borderRadius:10,
+    borderWidth:2,
+    backgroundColor:'#6668d0',
   },
-  inputContainer: {
-    margin: 20,
-    marginBottom: 0,
-    padding: 20,
-    paddingBottom: 10,
-    alignSelf: 'stretch',
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.2)'
+  list :{
+    marginTop:10,
+    marginLeft:80,
+    backgroundColor : '#6668d0',
+    width:250,
+    height:50,
+    borderRadius:10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  buttonContainer: {
-    alignSelf: 'stretch',
-    margin: 20,
-    padding: 20,
-    backgroundColor: 'blue',
-    borderWidth: 1,
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.6)'
+  text:{
+    marginTop:20,
+    color:'white',
+    fontSize:20,
+    fontWeight:'bold',
+    marginBottom:20,
   },
-  input: {
-    fontSize: 16,
-    height: 40,
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,1)'
-  },
-  alternativeLayoutButtonContainer: {
-    margin: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
 });
