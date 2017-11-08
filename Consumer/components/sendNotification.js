@@ -57,7 +57,7 @@ export default class sendNotification extends React.Component {
     };
   }
 
-  onClickButton() {
+  onClickButton(navigate) {
     fetch('https://serverna.herokuapp.com/sendNotification', {
       method: 'POST',
       headers: {
@@ -74,6 +74,7 @@ export default class sendNotification extends React.Component {
       })
       .then(responseJson => {
         alert('your list sucessfuly sent !! \n' + 'wait for response .....');
+        navigate('Home');
       })
       .catch(error => {
         alert('Error !!!  Please try again   ' + error);
@@ -102,7 +103,6 @@ export default class sendNotification extends React.Component {
     );
   }
   loc(state) {
-    var oldLatitude = state.params.getLocation().latitude;
     navigator.geolocation.getCurrentPosition(
       position => {
         // alert(
@@ -111,7 +111,7 @@ export default class sendNotification extends React.Component {
         //     '\nLon: ' +
         //     position.coords.longitude
         // );
-        state.params.changeLocation({
+        this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         });
@@ -119,13 +119,7 @@ export default class sendNotification extends React.Component {
       error => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 200 }
     );
-    // alert(
-    //   'latitude' + state.params.getLocation().latitude + '\n' + oldLatitude
-    // );
   }
-
-  // _onRefresh(){
-  //         alert("current Location  detected <> ");
 
   render() {
     const { navigate, state } = this.props.navigation;
@@ -134,6 +128,12 @@ export default class sendNotification extends React.Component {
         <Image style={styles.container} source={require('../images/main.jpg')}>
           <StatusBar backgroundColor="#66023c" />
 
+          <TouchableHighlight
+            style={styles.sendlist}
+            icon={{ name: 'cached' }}
+            onPress={() => this.onClickButton(navigate)}>
+            <Text style={styles.text}> Send List </Text>
+          </TouchableHighlight>
           <Text
             style={{
               marginTop: 100,
@@ -191,13 +191,6 @@ export default class sendNotification extends React.Component {
           />
 
           <Text>{'\n'}</Text>
-
-          <TouchableHighlight
-            style={styles.sendlist}
-            icon={{ name: 'cached' }}
-            onPress={() => this.onClickButton()}>
-            <Text style={styles.text}> Send List </Text>
-          </TouchableHighlight>
         </Image>
         <View>
           <Modal
@@ -217,12 +210,6 @@ export default class sendNotification extends React.Component {
                       latitude: e.nativeEvent.coordinate.latitude,
                       longitude: e.nativeEvent.coordinate.longitude
                     });
-                    alert(
-                      'latitude: ' +
-                        this.state.latitude +
-                        '\nlongitude: ' +
-                        this.state.longitude
-                    );
                   }}
                   style={styles.map}
                   region={{
@@ -252,7 +239,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     height: 600,
     width: 400,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   map: {

@@ -43,7 +43,6 @@ export default class CurrentList extends Component {
         }
       })
       .catch(err => {
-        alert(err);
         throw err;
       });
   }
@@ -58,7 +57,6 @@ export default class CurrentList extends Component {
         }
       })
       .catch(err => {
-        alert(err);
         throw err;
       });
   }
@@ -118,7 +116,9 @@ export default class CurrentList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#00b686'
+    backgroundColor: '#00b686',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   content: {
     alignItems: 'center',
