@@ -34,6 +34,7 @@ export default class Login extends Component {
     };
   }
   onClickLogin(navigate) {
+    if(this.state.agentName!== ''&& this.state.password !== ''){
     fetch('https://serverna.herokuapp.com/agentLogin', {
       method: 'POST',
       headers: {
@@ -55,6 +56,9 @@ export default class Login extends Component {
       .catch(err => {
         throw err;
       });
+    }else{
+      alert('Please make sure that you filled all fields.')
+    }
   }
   render() {
     const { navigate } = this.props.navigation;

@@ -98,27 +98,30 @@ export default class List extends Component {
 
                <Text
                  style={styles.val}>
-                 <Text style={styles.key}>Items:  </Text>
+                 <Text style={styles.key}>Items: </Text>
                  {this.state.list.items}
                </Text>
 
                <Text
                  style={styles.val}>
                  <Text style={styles.key}>
-                   Consumer name:   </Text>
+                   Consumer name: </Text>
                  {this.state.list.consumerName}
                </Text>
 
                <Text
                  style={styles.val}>
                  <Text style={styles.key}>
-                   Store information:  </Text>
+                   Store information: </Text>
                  {this.state.list.storeInfo}
                </Text>
 
-
-
-
+               <Text
+                 style={styles.val}>
+                 <Text style={styles.key}>
+                   Budget: </Text>
+                 {this.state.list.budget}
+               </Text>
            </View>
 
            <TouchableOpacity
@@ -129,20 +132,7 @@ export default class List extends Component {
            <Text style={styles.text}>Get Directions</Text>
            </TouchableOpacity>
 
-             <TouchableOpacity
-             style={styles.Accept}
-               onPress={() => {
-                 this.acceptList(this.state.list._id);
-                 this.setModalVisible(
-                   'modalListInfo',
-                   !this.state.modalListInfo
-                 );
-               }}
-               title="Accept"
-             >
-              <Text style={styles.text}>Accept</Text>
-             </TouchableOpacity>
-
+           <View style={styles.alternativeLayoutButtonContainer}>
              <TouchableOpacity
              style={styles.cancel}
                onPress={() => {
@@ -155,6 +145,21 @@ export default class List extends Component {
              >
               <Text style={styles.text}>Cancel</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity
+              style={styles.Accept}
+              onPress={() => {
+                this.acceptList(this.state.list._id);
+                this.setModalVisible(
+                  'modalListInfo',
+                  !this.state.modalListInfo
+                );
+              }}
+              title="Accept"
+              >
+              <Text style={styles.text}>Accept</Text>
+              </TouchableOpacity>
+              </View>
          </Modal>
        </View>
      </View>
@@ -187,14 +192,15 @@ const styles = StyleSheet.create({
   modal:{
     marginLeft:8,
     width:400,
-    height:250,
+    height:200,
     marginTop:150,
     borderRadius:10,
-    borderWidth:2,
-    backgroundColor:'#6668d0',
+    padding: 5,
+    // borderWidth:2,
+    backgroundColor:'#7986cb',
   },
   val:{
-      marginTop:25,
+      marginTop:10,
     color:'#26418f',
     fontSize:20,
     fontWeight:'bold',
@@ -202,8 +208,8 @@ const styles = StyleSheet.create({
   },
   key:{
     marginLeft:20,
-    marginTop:25,
-    color:'white',
+    marginTop:10,
+    color:'#eeeeee',
     fontSize:20,
     fontWeight:'bold',
   },
@@ -235,25 +241,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft:50
   },
-    Accept:{
-      backgroundColor:"green",
+    cancel:{
+      backgroundColor:"red",
       width:120,
       height:60,
-      marginTop:10,
+      marginTop:15,
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:280
+      marginLeft:230
     },
-    cancel:{
-      backgroundColor:"red",
+    Accept:{
+      backgroundColor:"green",
       width:120,
       height:60,
       top:-60,
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:10
+      marginLeft:50
       }
 });
 
