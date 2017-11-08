@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`myProfile componenet Testing contains TextInput 1`] = `<TextInput />`;
+
+exports[`myProfile componenet Testing contains TouchableOpacity 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "bottom": 0,
+      "justifyContent": "center",
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "right": 250,
+        },
+      ]
+    }
+  />
+  <View
+    collapsable={undefined}
+    onMoveShouldSetResponder={[Function]}
+    onMoveShouldSetResponderCapture={[Function]}
+    onResponderEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderStart={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "flex": 1,
+        "height": 1334,
+        "left": 0,
+        "overflow": "hidden",
+        "position": "absolute",
+        "top": 0,
+        "transform": Array [
+          Object {
+            "translateX": 0,
+          },
+        ],
+        "width": 750,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`myProfile componenet Testing contains View 1`] = `<View />`;
