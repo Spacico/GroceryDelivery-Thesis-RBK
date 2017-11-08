@@ -48,7 +48,7 @@ export default class WelcomePage extends React.Component {
           onPress={() => {
             navigate('Login');
           }}>
-          <Text style={styles.btnText}>LOGIN</Text>
+          <Text style={styles.btnText}>Log In</Text>
         </TouchableHighlight>
         <Text>{'\n'}</Text>
         <TouchableHighlight

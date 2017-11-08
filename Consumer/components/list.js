@@ -6,7 +6,8 @@ import {
   View,
   Text,
   AppRegistry,
-  Button
+  Button,
+  Dimensions
 } from 'react-native';
 //import Mapo from './mapView';
 import SocketIOClient from 'socket.io-client';
@@ -42,7 +43,7 @@ export default class List extends Component {
             <Text style={styles.btnText}>{this.props.list.storeInfo}</Text>
           </TouchableHighlight>
         </View>
-        <View style={{ marginTop: 22 }}>
+        <View style={{ marginTop: 15 }}>
           <Modal
             animationType="slide"
             transparent={false}
@@ -102,7 +103,7 @@ export default class List extends Component {
     );
   }
 }
-
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -111,10 +112,11 @@ const styles = StyleSheet.create({
   },
   listInfoContainer: {
     backgroundColor: '#81c784',
-    width: 400,
+    width: width * 0.9,
     height: 200,
     padding: 10,
-    margin: 5,
+    justifyContent: 'center',
+    margin: 15,
     borderRadius: 10
   },
   buttonContainer: {
@@ -126,8 +128,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   addButton: {
-    width: 300,
-    height: 60,
+    width: width * 0.9,
+    height: height * 0.08,
     borderRadius: 10,
     backgroundColor: '#519657',
     alignItems: 'center',

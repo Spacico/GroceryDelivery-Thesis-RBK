@@ -81,7 +81,6 @@ export default class sendNotification extends React.Component {
         body: JSON.stringify(this.state)
       })
         .then(response => {
-          alert('inside sendnotification');
           var message = 'Hi I make event';
           this.socket.emit('sendList', message);
           return response.json();
@@ -156,10 +155,10 @@ export default class sendNotification extends React.Component {
 
         <SearchBar
           lightTheme
-          onChangeText={val => this.setState({ Budget: val })}
+          onChangeText={val => this.setState({ budget: val })}
           style={styles.items}
           placeholder="Budget....."
-          value={this.state.Budget}
+          value={this.state.budget}
           noIcon
         />
         <Text>{'\n'}</Text>
@@ -249,9 +248,6 @@ const styles = StyleSheet.create({
   container: {
     // ...StyleSheet.absoluteFillObject,
     flex: 1,
-    // height: 600,
-    // width: 400,
-    // justifyContent: 'flex-start',
     alignItems: 'center'
   },
   map: {

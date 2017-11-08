@@ -8,7 +8,8 @@ import {
   Image,
   TouchableHighlight,
   TouchableOpacity,
-  AppRegistry
+  AppRegistry,
+  Dimensions
 } from 'react-native';
 
 export default class CurrentList extends Component {
@@ -47,7 +48,6 @@ export default class CurrentList extends Component {
       .then(res => res.json())
       .then(data => {
         if (data === true) {
-          alert(data);
           navigate('CurrentList');
         } else {
           alert(data.message);
@@ -133,11 +133,12 @@ export default class CurrentList extends Component {
     return <View style={styles.container}>{this.renderCurrentList()}</View>;
   }
 }
-
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    marginTop: 20,
+    // justifyContent: 'center',
     alignItems: 'center'
   },
   content: {
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
   },
   listInfoContainer: {
     backgroundColor: '#81c784',
-    width: 400,
+    width: width * 0.9,
     height: 200,
     padding: 10,
     margin: 2,
@@ -199,13 +200,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   addButton: {
-    width: 300,
-    height: 60,
+    width: width * 0.7,
+    height: height * 0.1,
     borderRadius: 10,
     backgroundColor: '#519657',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 25
+    margin: 20
   },
   btnText: {
     fontWeight: 'bold',

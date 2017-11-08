@@ -7,9 +7,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Button
+  Button,
+  Dimensions
 } from 'react-native';
 // import List component from it's file
+const { width, height } = Dimensions.get('window');
 import List from './list';
 
 //export class Getlistis
