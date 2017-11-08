@@ -62,6 +62,7 @@ export default class Login extends Component {
       <View style={styles.container}>
 
           <TextInput
+
             underlineColorAndroid="transparent"
             style={styles.input}
             placeholder="username"

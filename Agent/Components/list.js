@@ -98,63 +98,63 @@ export default class List extends Component {
 
                <Text
                  style={styles.val}>
-                 <Text style={styles.key}>Items:</Text>
+                 <Text style={styles.key}>Items:  </Text>
                  {this.state.list.items}
                </Text>
 
                <Text
                  style={styles.val}>
                  <Text style={styles.key}>
-                   Consumer name:
-                 </Text>
+                   Consumer name:   </Text>
                  {this.state.list.consumerName}
                </Text>
 
                <Text
                  style={styles.val}>
                  <Text style={styles.key}>
-                   Store information:
-                 </Text>
+                   Store information:  </Text>
                  {this.state.list.storeInfo}
                </Text>
 
-               <TouchableOpacity
-               style={styles.touch}
-                 onPress={this.handleGetDirections}
-                 title="Get Directions"
-               >
-               <Text style={styles.text}>Get Directions</Text>
-               </TouchableOpacity>
 
-                 <TouchableOpacity
-                 style={styles.Accept}
-                   onPress={() => {
-                     this.acceptList(this.state.list._id);
-                     this.setModalVisible(
-                       'modalListInfo',
-                       !this.state.modalListInfo
-                     );
-                   }}
-                   title="Accept"
-                 >
-                  <Text style={styles.text}>Accept</Text>
-                 </TouchableOpacity>
-
-                 <TouchableOpacity
-                 style={styles.cancel}
-                   onPress={() => {
-                     this.setModalVisible(
-                       'modalListInfo',
-                       !this.state.modalListInfo
-                     );
-                   }}
-                   title="Cancel"
-                 >
-                  <Text style={styles.text}>Cancel</Text>
-                  </TouchableOpacity>
 
 
            </View>
+
+           <TouchableOpacity
+           style={styles.touch}
+             onPress={this.handleGetDirections}
+             title="Get Directions"
+           >
+           <Text style={styles.text}>Get Directions</Text>
+           </TouchableOpacity>
+
+             <TouchableOpacity
+             style={styles.Accept}
+               onPress={() => {
+                 this.acceptList(this.state.list._id);
+                 this.setModalVisible(
+                   'modalListInfo',
+                   !this.state.modalListInfo
+                 );
+               }}
+               title="Accept"
+             >
+              <Text style={styles.text}>Accept</Text>
+             </TouchableOpacity>
+
+             <TouchableOpacity
+             style={styles.cancel}
+               onPress={() => {
+                 this.setModalVisible(
+                   'modalListInfo',
+                   !this.state.modalListInfo
+                 );
+               }}
+               title="Cancel"
+             >
+              <Text style={styles.text}>Cancel</Text>
+              </TouchableOpacity>
          </Modal>
        </View>
      </View>
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   modal:{
     marginLeft:8,
     width:400,
-    height:400,
+    height:250,
     marginTop:150,
     borderRadius:10,
     borderWidth:2,
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     marginLeft:20,
     marginTop:25,
     color:'white',
-    fontSize:25,
+    fontSize:20,
     fontWeight:'bold',
   },
   text:{
@@ -237,23 +237,23 @@ const styles = StyleSheet.create({
   },
     Accept:{
       backgroundColor:"green",
-      width:300,
+      width:120,
       height:60,
       marginTop:10,
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:50
+      marginLeft:280
     },
     cancel:{
       backgroundColor:"red",
-      width:300,
+      width:120,
       height:60,
-      marginTop:10,
+      top:-60,
       borderRadius:10,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft:50
+      marginLeft:10
       }
 });
 
