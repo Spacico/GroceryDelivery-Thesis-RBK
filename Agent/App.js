@@ -17,20 +17,26 @@ import Login from './Components/Login';
 import CurrentList from './Components/CurrentList';
 import AvailableLists from './Components/availableLists';
 import History from './Components/History';
+import WelcomePage from './Components/WelcomePage';
+import Signup from './Components/Signup';
+
 
 // import Profile from './Components/myProfile';
 
 const NavigationApp = StackNavigator({
+  WelcomePage: { screen: WelcomePage },
+  Signup: { screen: Signup },
   Home: { screen: Home },
   CurrentList: { screen: CurrentList },
   AvailableLists: { screen: AvailableLists },
-  History: { screen: History }
+  History: { screen: History },
+  Login: { screen: Login }
 });
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.socket = SocketIOClient('http://192.168.2.9:8080', { jsonp: false });
+    this.socket = SocketIOClient('https://serverna.herokuapp.com/', { jsonp: false });
     this.socket.on('sendlist', () => {
       PushNotification.localNotification({
         message: 'there is new consumer'
@@ -111,31 +117,18 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.flag === 'main') {
-      return (
-        <View style={styles.container}>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => {
-              this.changeFlag('login');
-            }}>
-            <Text style={styles.buttonText}>LOGIN</Text>
-          </TouchableOpacity>
-          <View />
-        </View>
-      );
-    } else if (this.state.flag === 'login') {
-      return <Login changeFlag={this.changeFlag.bind(this)} />;
-    } else if (this.state.flag === 'tabs') {
+
       return <NavigationApp />;
     }
-  }
 }
 AppRegistry.registerComponent('App', () => App);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   content: {
     alignItems: 'center'

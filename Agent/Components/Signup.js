@@ -9,6 +9,20 @@ import {
 } from 'react-native';
 
 export default class Signup extends Component {
+  static navigationOptions = {
+    title: 'Sign Up',
+    headerTitleStyle: {
+     fontWeight: 'bold',
+     fontSize: 25,
+     color: 'black'
+   },
+   headerStyle: {
+     backgroundColor: '#6668d0'
+   },
+   headerTintColor: {
+    backgroundColor: 'black'
+   }
+  };
     constructor(props) {
         super(props);
         this.state = {
@@ -22,8 +36,8 @@ export default class Signup extends Component {
             lastName: ''
         };
     }
-    onClickSignup() {
-        fetch('http:192.168.2.29:1128/agentSignup', {
+    onClickSignup(navigate) {
+        fetch('https://serverna.herokuapp.com/agentSignup', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -37,12 +51,13 @@ export default class Signup extends Component {
             .catch(err => {
                 throw err;
             });
-        this.state.changeFlag('getLists');
+        navigate('Login')
     }
 
     render() {
+      const { navigate } = this.props.navigation;
         return (
-            <View style={styles.content}>
+            <View KeyboardAvoidingView style={styles.content}>
                 <View style={styles.inputContainer}>
                     <TextInput
                         onChangeText={val => {
@@ -104,7 +119,7 @@ export default class Signup extends Component {
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => {
-                            this.onClickSignup();
+                            this.onClickSignup(navigate);
                         }}
                         underlayColor="red"
                     >
@@ -116,14 +131,6 @@ export default class Signup extends Component {
                         >
                             <Text style={styles.buttonText}>SignUp</Text>
                         </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() => {
-                            this.state.changeFlag('main');
-                        }}
-                    >
-                        <Text>BACK</Text>
                     </TouchableOpacity>
                 </View>
             </View>

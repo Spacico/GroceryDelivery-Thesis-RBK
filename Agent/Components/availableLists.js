@@ -16,7 +16,18 @@ import List from './list';
 //export class Getlistis
 export default class AvailableLists extends Component {
   static navigationOptions = {
-    title: 'Available Lists'
+    title: 'Available Lists',
+    headerTitleStyle: {
+     fontWeight: 'bold',
+     fontSize: 25,
+     color: 'white'
+   },
+   headerStyle: {
+     backgroundColor: '#6668d0'
+   },
+   headerTintColor: {
+    backgroundColor: 'black'
+   }
   };
 
   constructor(props) {
@@ -81,55 +92,12 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'center'
   },
-  logo: {
-    color: 'white',
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15,
-    marginBottom: 20
+  list :{
+    backgroundColor : '#303f9f',
+    width:300,
+    height:60,
+    borderRadius:10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  listInfoContainer: {
-    backgroundColor: '#B5B5B5',
-    padding: 5,
-    margin: 5
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    alignItems: 'center'
-  },
-  inputContainer: {
-    margin: 20,
-    marginBottom: 0,
-    padding: 20,
-    paddingBottom: 10,
-    alignSelf: 'stretch',
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.2)'
-  },
-  buttonContainer: {
-    alignSelf: 'stretch',
-    margin: 20,
-    padding: 20,
-    backgroundColor: 'blue',
-    borderWidth: 1,
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.6)'
-  },
-  input: {
-    fontSize: 16,
-    height: 40,
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,1)'
-  },
-  alternativeLayoutButtonContainer: {
-    margin: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
 });
