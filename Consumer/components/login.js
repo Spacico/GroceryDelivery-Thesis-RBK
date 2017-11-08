@@ -14,22 +14,22 @@ export default class login extends React.Component {
             password : '',
             list:''
         };
-      
+
 
     }
 
     //http:192.168.1.2:1128/consumerLogin //osama
-  
+
 
     onClickButton(){
-        fetch('http:192.168.2.9:8080/consumerLogin', {//192.168.1.7
+        fetch('https://serverna.herokuapp.com/consumerLogin', {//192.168.1.7
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(
-                this.state    
+                this.state
             )
         })
         .then((response) => {
@@ -37,7 +37,7 @@ export default class login extends React.Component {
 
        })
        .then((responseJson) => {
-         
+
            // alert(responseJson);
 
 
@@ -62,16 +62,16 @@ else {
         //       alert("Hi")
         //         alert("Please Sign Up First");
         //         this.state.changeFlag('signup');
-        //     }); 
+        //     });
             // this.state.changeFlag('sendNotification');
-        
+
     }
 
     render() {
         return (
             <View style={styles.container}>
 
-                
+
 
             <Image style={styles.container}
             source = {require('../images/main.jpg')}
@@ -81,21 +81,21 @@ else {
             backgroundColor ="#8C0000"
             />
 
-    
 
- 
+
+
 
             <Text  style= {{ marginTop: 180,  textAlign:'right',fontWeight: 'bold',fontSize: 20 }}  > User Name </Text>
-                <SearchBar 
+                <SearchBar
                     lightTheme
                     onChangeText = {(val) =>{ this.setState({consumerName : val})}}
                     style = {styles.input} placeholder = 'user name .... '
-                    noIcon 
+                    noIcon
                 />
 
                   <Text>{'\n'}</Text>
                 <Text style= {styles.label} > Password </Text>
-                <SearchBar 
+                <SearchBar
                 lightTheme
                     onChangeText = {(val) => this.setState({password : val})}
                     style = {styles.input} placeholder = 'password.....'
@@ -112,7 +112,7 @@ else {
                         this.onClickButton.bind(this)
                     }>
                     <Text style= {styles.text} > Log in </Text>
-                </TouchableHighlight> 
+                </TouchableHighlight>
                 <Text>{'\n'}</Text>
   <Text>{'\n'}</Text>
                 <Tabs style={styles.tabs} >
@@ -144,11 +144,11 @@ else {
     onPress={()=>{this.state.changeFlag('signup')}}
     >
   </Tab>
- 
+
 </Tabs>
 
           </Image>
-               
+
 
             </View>
         );
@@ -197,14 +197,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     // color : "#CF0063",
     fontWeight: 'bold',
-    fontSize: 20,  
+    fontSize: 20,
     // opacity:.02
 },
 label :{
     textAlign:'right',
     // color : "#CF0063",
     fontWeight: 'bold',
-    fontSize: 20,  
+    fontSize: 20,
     // opacity:.02
 },
 
@@ -246,10 +246,8 @@ tabs:{
     flex: 1,
      width: 500,
         height : 50,
-     
+
 
 }
 
 });
-
-
