@@ -1,255 +1,163 @@
 import React from 'react';
-import {StatusBar, Image,View,StyleSheet,TouchableHighlight,Text,TextInput} from 'react-native';
-import SendNotification from './sendNotification'
-import {TabBar,SearchBar,Tabs, Tab, Icon,SideMenu, List, ListItem } from 'react-native-elements'
-import {Header,Container, Button } from 'native-base';
+import {
+  StatusBar,
+  Image,
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  TextInput
+} from 'react-native';
+import SendNotification from './sendNotification';
+import {
+  TabBar,
+  SearchBar,
+  Tabs,
+  Tab,
+  Icon,
+  SideMenu,
+  List,
+  ListItem
+} from 'react-native-elements';
+import { Header, Container, Button } from 'native-base';
+import { NavigationApp } from '../App';
 
 export default class login extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            changeFlag: props.changeFlag,
-            consumerName : '',
-            password : '',
-            list:''
-        };
-      
-
+  static navigationOptions = {
+    title: 'Login',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      color: '#333'
+    },
+    headerStyle: {
+      backgroundColor: '#81c784'
+    },
+    headerTintColor: {
+      /*  */
     }
+  };
 
-    //http:192.168.1.2:1128/consumerLogin //osama
-  
+  constructor(props) {
+    super(props);
 
-    onClickButton(){
-        fetch('http:192.168.2.9:8080/consumerLogin', {//192.168.1.7
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(
-                this.state    
-            )
+    this.state = {
+      consumerName: '',
+      password: ''
+    };
+  }
+
+  onLogin(navigate) {
+    if (this.state.consumerName !== '' && this.state.password !== '') {
+      fetch('https://serverna.herokuapp.com/consumerLogin', {
+        //192.168.1.7
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          consumerName: this.state.consumerName,
+          password: this.state.password
         })
-        .then((response) => {
-           return response.json()
-
-       })
-       .then((responseJson) => {
-         
-           // alert(responseJson);
-
-
-           if(responseJson){
-           this.state.changeFlag('sendNotification');
-}
-else {
-    alert("user name or password is wrong !!!")
-}
-       })
-       .catch((error) => {
-            // reject(error);
-            alert("there is something wrong please try again!!!")
-       });
-
-
-        // .then ((res) => {
-        //     alert(res)
-        //         this.state.changeFlag('sendNotification');
-        // })
-        // .catch((err)=>{
-        //       alert("Hi")
-        //         alert("Please Sign Up First");
-        //         this.state.changeFlag('signup');
-        //     }); 
-            // this.state.changeFlag('sendNotification');
-        
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if (responseJson === true) {
+            navigate('Home');
+          } else {
+            alert(responseJson.message);
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
+    } else {
+      alert('Please make sure that you filled all fields.');
     }
+  }
 
-    render() {
-        return (
-            <View style={styles.container}>
-
-                
-
-            <Image style={styles.container}
-            source = {require('../images/main.jpg')}
-            >
-
-            <StatusBar
-            backgroundColor ="#8C0000"
-            />
-
-    
-
- 
-
-            <Text  style= {{ marginTop: 180,  textAlign:'right',fontWeight: 'bold',fontSize: 20 }}  > User Name </Text>
-                <SearchBar 
-                    lightTheme
-                    onChangeText = {(val) =>{ this.setState({consumerName : val})}}
-                    style = {styles.input} placeholder = 'user name .... '
-                    noIcon 
-                />
-
-                  <Text>{'\n'}</Text>
-                <Text style= {styles.label} > Password </Text>
-                <SearchBar 
-                lightTheme
-                    onChangeText = {(val) => this.setState({password : val})}
-                    style = {styles.input} placeholder = 'password.....'
-                    noIcon
-                    secureTextEntry
-                />
-
-<Text>{'\n'}</Text>
- <Text>{'\n'}</Text>
-               <TouchableHighlight
-               style = {styles.login }
-                icon={{name: 'cached'}}
-                    onPress={
-                        this.onClickButton.bind(this)
-                    }>
-                    <Text style= {styles.text} > Log in </Text>
-                </TouchableHighlight> 
-                <Text>{'\n'}</Text>
-  <Text>{'\n'}</Text>
-                <Tabs style={styles.tabs} >
-
-  <Tab
-    titleStyle={{fontWeight: 'bold', fontSize: 10 }}
-    renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='home' size={40} />}
-    renderSelectedIcon={() => <Icon  color={'#000000'} name='home' size={50} />}
-   onPress={()=>{this.state.changeFlag('main')}}
-   >
-  </Tab>
-  <Tab
-    titleStyle={{fontWeight: 'bold', fontSize: 10}}
-    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
-    // selected={selectedTab === 'profile'}
-    // title={selectedTab === 'profile' ? 'PROFILE' : null}
-    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='person' size={40} />}
-    renderSelectedIcon={() => <Icon color={'#000000'} name='person' size={50} />}
-    onPress={()=>{this.state.changeFlag('login')}}
-    >
-  </Tab>
-    <Tab
-    titleStyle={{fontWeight: 'bold', fontSize: 10}}
-    // selectedTitleStyle={{marginTop: -1, marginBottom: 6}}
-    // selected={selectedTab === 'profile'}
-    // title={selectedTab === 'profile' ? 'PROFILE' : null}
-    renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center'}} color={'#000000'} name='vpn-key' size={40} />}
-    renderSelectedIcon={() => <Icon color={'#000000'} name='vpn-key' size={50} />}
-    onPress={()=>{this.state.changeFlag('signup')}}
-    >
-  </Tab>
- 
-</Tabs>
-
-          </Image>
-               
-
-            </View>
-        );
-    }
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.container}>
+        <StatusBar backgroundColor="#336e3e" />
+        <Text
+          style={{
+            marginTop: 80,
+            textAlign: 'right',
+            fontWeight: 'bold',
+            fontSize: 20
+          }}>
+          {' '}
+          User Name{' '}
+        </Text>
+        <SearchBar
+          lightTheme
+          onChangeText={val => {
+            this.setState({ consumerName: val });
+          }}
+          style={styles.input}
+          placeholder="username .... "
+          noIcon
+          required
+        />
+        <Text>{'\n'}</Text>
+        <Text style={styles.label}> Password </Text>
+        <SearchBar
+          lightTheme
+          onChangeText={val => this.setState({ password: val })}
+          style={styles.input}
+          placeholder="password....."
+          noIcon
+          required
+          secureTextEntry
+        />
+        <Text>{'\n'}</Text>
+        <Text>{'\n'}</Text>
+        <TouchableHighlight
+          style={styles.login}
+          icon={{ name: 'cached' }}
+          onPress={() => {
+            this.onLogin(navigate);
+          }}>
+          <Text style={styles.text}> Log in </Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // backgroundColor: '#3498db',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // color:'#3498db'
-        // backfaceVisibility:true
-    },
-    addButton: {
-        backgroundColor : '#ccc',
-        width : 90 ,
-        height : 40,
-        justifyContent : 'center',
-        elevation : 8,
-    },
-    input: {
-        width: 300,
-        height : 40,
-        // marginBottom : 20,
-        // color : "#FFF",
-        // paddingHorizontal : 10
-    },
-    // logoContainer :{
-    //     alignItems : 'center',
-    //     flexGrow : 1,
-    //     justifyContent : 'center'
-    // },
-    // logo : {
-    //     width: 200,
-    //     height:100
-    // },
-    // title: {
-    //     color : '#FFF',
-    //     marginTop:10,
-    //     textAlign:'center',
-    //     opacity:.5
-    // },
-    text :{
-    textAlign: 'left',
-    // color : "#CF0063",
-    fontWeight: 'bold',
-    fontSize: 20,  
-    // opacity:.02
-},
-label :{
-    textAlign:'right',
-    // color : "#CF0063",
-    fontWeight: 'bold',
-    fontSize: 20,  
-    // opacity:.02
-},
-
-login:{
-     width: 300,
-        height : 40,
-        backgroundColor:"#8C0000",
-       //  // color:"#FFFFFF",
-       alignItems : "center",
-       justifyContent: 'center',
-       // fontWeight : "700"
-},
-signup:{
-     width: 300,
-        height : 40,
-        backgroundColor:"#DF5900",
-       //  // color:"#FFFFFF",
-       alignItems : "center",
-       justifyContent: 'center',
-       // fontWeight : "700"
-},
-shadow: {
-    marginTop:200,
-    marginBottom:200,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height:20,
-    width:400,
-    flexGrow : 1,
-    backgroundColor:"#8C0000",
-    opacity:9
-},
-arrow:{
-    width: 100,
-    height :100,
-
-},
-tabs:{
+  container: {
     flex: 1,
-     width: 500,
-        height : 50,
-     
-
-}
-
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  input: {
+    width: 300,
+    height: 45,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10
+  },
+  text: {
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: 20
+  },
+  label: {
+    textAlign: 'right',
+    fontWeight: 'bold',
+    fontSize: 20
+  },
+  login: {
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    backgroundColor: '#519657',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 });
-
-
