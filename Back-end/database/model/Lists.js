@@ -2,15 +2,16 @@
 var mongoose = require('mongoose');
 
 var listSchema = mongoose.Schema({
-	agentName:  String,
-	consumerName: String,
-	items:String,
-	available: Boolean,
-	location :{
-		latitude:Number,
-		longitude:Number
-	},
-	storeInfo:String
+    agentName: String,
+    consumerName: String,
+    items: String,
+    available: Boolean,
+    location: {
+        latitude: Number,
+        longitude: Number
+    },
+    storeInfo: String,
+    budget: String
 });
 
 var Lists = mongoose.model('Lists', listSchema);

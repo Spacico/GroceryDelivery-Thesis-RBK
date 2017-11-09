@@ -11,6 +11,20 @@ import {
 // import Movies from './getlists';
 
 export default class Login extends Component {
+  static navigationOptions = {
+    title: 'Login',
+    headerTitleStyle: {
+     fontSize: 25,
+     color: 'white'
+   },
+   headerStyle: {
+     backgroundColor: '#6668d0'
+   },
+   headerTintColor: {
+    backgroundColor: 'black'
+   }
+
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -19,9 +33,9 @@ export default class Login extends Component {
       password: ''
     };
   }
-
-  onClickLogin() {
-    fetch('http:192.168.1.8:1128/agentLogin', {
+  onClickLogin(navigate) {
+    if(this.state.agentName!== ''&& this.state.password !== ''){
+    fetch('https://serverna.herokuapp.com/agentLogin', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -34,30 +48,34 @@ export default class Login extends Component {
       })
       .then(responseJson => {
         if (responseJson === true) {
-          this.state.changeFlag('getLists');
+          navigate('Home');
         } else {
           alert(responseJson.message);
         }
       })
       .catch(err => {
-        alert(err);
         throw err;
       });
+    }else{
+      alert('Please make sure that you filled all fields.')
+    }
   }
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.content}>
-        <View style={styles.inputContainer}>
+      <View style={styles.container}>
+
           <TextInput
+
             underlineColorAndroid="transparent"
             style={styles.input}
-            placeholder="agentName"
+            placeholder="username"
             onChangeText={val => {
               this.setState({ agentName: val });
             }}
           />
           <TextInput
-            secureTextEntryt={true}
+            secureTextEntry
             underlineColorAndroid="transparent"
             style={styles.input}
             placeholder="password"
@@ -65,31 +83,17 @@ export default class Login extends Component {
               this.setState({ password: val });
             }}
           />
-
+          <Text>{'\n\n'}</Text>
           <TouchableOpacity
-            style={styles.buttonContainer}
+            style={styles.btn}
             onPress={() => {
-              this.onClickLogin();
+              this.onClickLogin(navigate);
             }}
             underlayColor="blue">
-            <View
-              style={{
-                backgroundColor: 'skyblue',
-                height: 50
-              }}>
+
               <Text style={styles.buttonText}>Login</Text>
-            </View>
           </TouchableOpacity>
-          <View>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => {
-                this.state.changeFlag('main');
-              }}>
-              <Text style={styles.buttonText}>BACK</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+
       </View>
     );
   }
@@ -97,49 +101,36 @@ export default class Login extends Component {
 AppRegistry.registerComponent('Login', () => Login);
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+      backgroundColor:'#c5cae9',
+      justifyContent: 'center',
+      alignItems: 'center',
   },
-  content: {
-    alignItems: 'center'
-  },
-  logo: {
-    color: 'white',
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    textShadowColor: '#252525',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 15,
-    marginBottom: 20
-  },
-  inputContainer: {
-    margin: 20,
-    marginBottom: 0,
-    padding: 20,
-    paddingBottom: 10,
-    alignSelf: 'stretch',
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.2)'
-  },
+
   input: {
     fontSize: 16,
-    height: 40,
+    height: 60,
+    width:300,
     padding: 10,
     marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,1)'
-  },
-  buttonContainer: {
-    alignSelf: 'stretch',
-    margin: 20,
-    padding: 20,
-    backgroundColor: 'blue',
-    borderWidth: 1,
-    borderColor: '#fff',
-    backgroundColor: 'rgba(255,255,255,0.6)'
+    backgroundColor:'white',
+    borderRadius:10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
+    color:'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  btn:{
+    backgroundColor : '#6668d0',
+    width:300,
+    height:60,
+    borderRadius:10,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
+
 });
